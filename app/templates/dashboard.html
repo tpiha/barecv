@@ -12,17 +12,81 @@
                 <!-- Main content -->
                 <section class="content">
 
+{{ range $key, $message := .SuccessFlash }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4>    <i class="icon fa fa-check"></i> Success!</h4>
+                                {{ $message }}
+                            </div>
+                        </div><!-- /.col (LEFT) -->
+                    </div><!-- /.row -->
+{{ end }}
+{{ range $key, $message := .ErrorFlash }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4>    <i class="icon fa fa-ban"></i> Error!</h4>
+                                {{ $message }}
+                            </div>
+                        </div><!-- /.col (LEFT) -->
+                    </div><!-- /.row -->
+{{ end }}
+
                     <div class="row">
 
-                        <div class="col-md-8">
-                            <div class="box box-default">
+                        <div class="col-md-6">
+                            <div class="box box-danger">
                                 <div class="box-header with-border">
                                     <i class="fa fa-user"></i>
                                     <h3 class="box-title">General Profile</h3>
                                 </div><!-- /.box-header -->
-                                <div class="box-body">
-                                fdsfsda
-                                </div><!-- /.box-body -->
+                                <form role="form" method="POST" action="{{ .AppUrl }}/dashboard-save">
+                                    <div class="box-body">
+                                        <div class="form-group{{ range .Errors }}{{ range .FieldNames }}{{ if eq . "name" }} has-error{{ end }}{{ end }}{{ end }}">
+                                            <label for="name">Name</label>
+                                            <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" value="{{ .User.Name }}">
+                                            {{ range .Errors }}{{ range .FieldNames }}{{ if eq . "name" }}<p class="help-block text-red">This field is required.</p>{{ end }}{{ end }}{{ end }}
+                                        </div>
+                                        <div class="form-group{{ range .Errors }}{{ range .FieldNames }}{{ if eq . "profession" }} has-error{{ end }}{{ end }}{{ end }}">
+                                            <label for="profession">Profession</label>
+                                            <input type="text" class="form-control" id="profession" name="profession" placeholder="Enter short description of your profession" value="{{ .User.Profession }}">
+                                            {{ range .Errors }}{{ range .FieldNames }}{{ if eq . "profession" }}<p class="help-block text-red">This field is required.</p>{{ end }}{{ end }}{{ end }}
+                                        </div>
+
+                                        <div class="form-group{{ range .Errors }}{{ range .FieldNames }}{{ if eq . "email" }} has-error{{ end }}{{ end }}{{ end }}">
+                                            <label for="email">Email</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-envelope"></i></span>
+                                                <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email address" value="{{ .User.Email }}">
+                                            </div>
+                                            {{ range .Errors }}{{ range .FieldNames }}{{ if eq . "email" }}<p class="help-block text-red">This field is required.</p>{{ end }}{{ end }}{{ end }}
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="phone">Phone</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+                                                <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter your phone number" value="{{ .User.Phone }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="website">Website</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-link"></i></span>
+                                                <input type="text" class="form-control" id="website" name="website" placeholder="Enter your website URL" value="{{ .User.Website }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="address">Address</label>
+                                            <textarea id="address" name="address" class="form-control" rows="3" placeholder="Enter your address in 2 &dash; 3 lines">{{ .User.Address }}</textarea>
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-primary pull-right">Save Profile</button>
+                                    </div>
+                                </form>
                             </div><!-- /.box -->
                         </div>
 

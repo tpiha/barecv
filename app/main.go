@@ -1,9 +1,11 @@
 package main
 
 import (
+	_ "github.com/lib/pq"
+
 	"github.com/go-martini/martini"
 	"github.com/jinzhu/gorm"
-	_ "github.com/lib/pq"
+	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/oauth2"
 	"github.com/martini-contrib/render"
 )
@@ -40,9 +42,10 @@ func main() {
 
 	// GET methods
 	m.Get("/", Home)
-	m.Get("/dashboard", oauth2.LoginRequired, Dashboard)
+	m.Get("/dashboard", binding.Form(ProfileForm{}), oauth2.LoginRequired, Dashboard)
 
 	// POST methods
+	m.Post("/dashboard-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, DashboardSave)
 
 	// Run server
 	m.Run()

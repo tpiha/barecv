@@ -4,6 +4,7 @@ import (
 	"crypto/md5"
 	"fmt"
 
+	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/oauth2"
 	"github.com/martini-contrib/sessions"
 )
@@ -15,6 +16,7 @@ type PageData struct {
 	AppUrl        string
 	SuccessFlash  []interface{}
 	ErrorFlash    []interface{}
+	Errors        *binding.Errors
 }
 
 // NewPageData is the constructor for PageData struct
@@ -28,6 +30,7 @@ func NewPageData(tokens oauth2.Tokens, session sessions.Session) *PageData {
 		md5.Sum([]byte(pd.User.Email)))
 
 	pd.AppUrl = config.AppUrl
+	pd.Errors = &binding.Errors{}
 
 	pd.SuccessFlash = session.Flashes("success")
 	pd.ErrorFlash = session.Flashes("error")
