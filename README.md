@@ -1,2 +1,3 @@
-# tinycv
-Online CV written in Go.
+# TinyCV
+
+Online CV service written in Go.
