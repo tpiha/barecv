@@ -1,11 +1,17 @@
 TODO
 
+- dashboard - visits stats, search stats
 - account page
 - delete account
 - CV frontend / finish template
 - adding sections and filling them
-- settings - color, fonts, privacy level (public, private, hash, password), template
+- settings - color, fonts, privacy level (public, private, hash, password), template, background for margins, google analytics
 - generate PDF
+- add photo to CV
+- add background for margins on your CV
+- upload files
+- additional languages
+- disable search engine indexing
 
 DONE
 
