@@ -2,20 +2,32 @@ package main
 
 import (
 	"github.com/go-martini/martini"
+	"github.com/jinzhu/gorm"
 	_ "github.com/lib/pq"
 	"github.com/martini-contrib/oauth2"
 	"github.com/martini-contrib/render"
-	"github.com/martini-contrib/sessions"
-	goauth2 "golang.org/x/oauth2"
 )
+
+// Martini object
+var m *martini.ClassicMartini
+
+// Config object
+var config *SaConfig
+
+// Database object
+var db *gorm.DB
 
 // Main function
 func main() {
+	// Initializa config
+	config = &SaConfig{}
+	config.Load("config.json")
+
 	// Initizalize database
-	InitDb()
+	db = InitDb()
 
 	// Initialize Martini
-	m := martini.Classic()
+	m = martini.Classic()
 
 	// Render html templates from templates directory
 	m.Use(render.Renderer(render.Options{
@@ -23,16 +35,8 @@ func main() {
 		Layout:     "layout",
 	}))
 
-	m.Use(sessions.Sessions("my_session", sessions.NewCookieStore([]byte("secret123"))))
-
-	m.Use(oauth2.Github(
-		&goauth2.Config{
-			ClientID:     "96aa9b3f1c9b7ac26c4e",
-			ClientSecret: "4c48d5e04a239396c2f4f854b8b500fdfff26de1",
-			Scopes:       []string{"user:email"},
-			// RedirectURL:  "http://localhost:3000/register-github",
-		},
-	))
+	// Initializes Google auth
+	InitGoogle()
 
 	// GET methods
 	m.Get("/", Home)
