@@ -1,6 +1,5 @@
 TODO
 
-- dashboard - connect the stats
 - CV frontend / finish template
 - adding sections and filling them
 - settings - color, fonts, privacy level (public, private, hash, password), template, background for margins, google analytics
@@ -11,6 +10,7 @@ TODO
 - additional languages
 - disable search engine indexing
 - embed CV in website
+- dashboard - connect the stats and buttons
 
 DONE
 

@@ -91,6 +91,57 @@
                             </div><!-- /.box -->
                         </div>
 
+                        <div class="col-md-6">
+                            <div class="box box-danger">
+                                <div class="box-header with-border">
+                                    <i class="fa fa-link"></i>
+                                    <h3 class="box-title">Social Networks</h3>
+                                </div><!-- /.box-header -->
+                                <form role="form" method="POST" action="{{ .AppUrl }}/cv-save-social">
+                                    <div class="box-body">
+                                        <div class="form-group">
+                                            <label for="linkedin">LinkedIn</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-linkedin"></i></span>
+                                                <input type="text" class="form-control" id="linkedin" name="linkedin" placeholder="Enter your LinkedIn public URL" value="{{ .User.LinkedIn }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="facebook">Facebook</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-facebook"></i></span>
+                                                <input type="text" class="form-control" id="facebook" name="facebook" placeholder="Enter your Facebook public URL" value="{{ .User.Facebook }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="twitter">Twitter</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-twitter"></i></span>
+                                                <input type="text" class="form-control" id="twitter" name="twitter" placeholder="Enter your Twitter public URL" value="{{ .User.Twitter }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="github">GitHub</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-github"></i></span>
+                                                <input type="text" class="form-control" id="github" name="github" placeholder="Enter your GitHub public URL" value="{{ .User.GitHub }}">
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="instagram">Instagram</label>
+                                            <div class="input-group">
+                                                <span class="input-group-addon"><i class="fa fa-instagram"></i></span>
+                                                <input type="text" class="form-control" id="instagram" name="instagram" placeholder="Enter your Instagram public URL" value="{{ .User.Instagram }}">
+                                            </div>
+                                        </div>
+                                    </div><!-- /.box-body -->
+                                    <div class="box-footer">
+                                        <button type="submit" class="btn btn-primary pull-right">Save Social Networks</button>
+                                    </div>
+                                </form>
+                            </div><!-- /.box -->
+                        </div>
+
                     </div><!-- /.row -->
 
                 </section><!-- /.content -->

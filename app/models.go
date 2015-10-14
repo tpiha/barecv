@@ -14,4 +14,9 @@ type User struct {
 	Phone      string `sql:"size:255"`
 	Website    string `sql:"size:255"`
 	Address    string `sql:"size:1023"`
+	LinkedIn   string `sql:"size:255"`
+	Facebook   string `sql:"size:255"`
+	Twitter    string `sql:"size:255"`
+	GitHub     string `sql:"size:255"`
+	Instagram  string `sql:"size:255"`
 }

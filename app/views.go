@@ -51,6 +51,23 @@ func CVSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, pro
 	}
 }
 
+// CVSaveSocial saves dashboard page
+func CVSaveSocial(r render.Render, tokens oauth2.Tokens, session sessions.Session, social SocialNetworksForm, err binding.Errors) {
+	pd := NewPageData(tokens, session)
+
+	log.Printf("[CVSaveSocial] social: %s", social)
+
+	user := pd.User
+	user.LinkedIn = social.LinkedIn
+	user.Facebook = social.Facebook
+	user.Twitter = social.Twitter
+	user.GitHub = social.GitHub
+	user.Instagram = social.Instagram
+	db.Save(user)
+	session.AddFlash("You have successfully updated your BareCV profile.", "success")
+	r.Redirect(config.AppUrl+"/cv", 302)
+}
+
 // Account renders user's account page
 func Account(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 	pd := NewPageData(tokens, session)
