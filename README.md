@@ -1,3 +1,3 @@
 # TinyCV
 
-Online CV service written in Go.
+Online CV service and CV generator written in Go.

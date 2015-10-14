@@ -21,7 +21,7 @@ var db *gorm.DB
 func main() {
 	// Initializa config
 	config = &SaConfig{}
-	config.Load("config.json")
+	config.Load("../config.json")
 
 	// Initizalize database
 	db = InitDb()
