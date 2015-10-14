@@ -1,0 +1,17 @@
+TODO
+
+- account page
+- delete account
+- CV frontend / finish template
+- adding sections and filling them
+- settings - color, fonts, privacy level (public, private, hash, password), template
+- generate PDF
+
+DONE
+
+v 1.0 beta
+
+* init application
+* basic layout, prepare theme
+* registration
+* profile update

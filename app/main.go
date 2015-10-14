@@ -43,9 +43,10 @@ func main() {
 	// GET methods
 	m.Get("/", Home)
 	m.Get("/dashboard", binding.Form(ProfileForm{}), oauth2.LoginRequired, Dashboard)
+	m.Get("/cv", binding.Form(ProfileForm{}), oauth2.LoginRequired, CV)
 
 	// POST methods
-	m.Post("/dashboard-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, DashboardSave)
+	m.Post("/cv-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, CVSave)
 
 	// Run server
 	m.Run()
