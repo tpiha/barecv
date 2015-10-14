@@ -12,6 +12,7 @@ TODO
 - upload files
 - additional languages
 - disable search engine indexing
+- embed CV in website
 
 DONE
 
