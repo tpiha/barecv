@@ -50,3 +50,16 @@ func CVSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, pro
 		r.HTML(200, "cv", pd)
 	}
 }
+
+// Account renders user's account page
+func Account(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
+	pd := NewPageData(tokens, session)
+	r.HTML(200, "account", pd)
+}
+
+// AccountDelete deletes user's SA account
+func AccountDelete(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
+	pd := NewPageData(tokens, session)
+	db.Delete(pd.User)
+	r.Redirect(config.AppUrl, 302)
+}

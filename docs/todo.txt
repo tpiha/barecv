@@ -1,8 +1,6 @@
 TODO
 
-- dashboard - visits stats, search stats
-- account page
-- delete account
+- dashboard - connect the stats
 - CV frontend / finish template
 - adding sections and filling them
 - settings - color, fonts, privacy level (public, private, hash, password), template, background for margins, google analytics
@@ -22,3 +20,6 @@ v 1.0 beta
 * basic layout, prepare theme
 * registration
 * profile update
+* account page
+* delete account
+* dashboard - visits stats, search stats

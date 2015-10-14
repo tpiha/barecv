@@ -42,8 +42,10 @@ func main() {
 
 	// GET methods
 	m.Get("/", Home)
-	m.Get("/dashboard", binding.Form(ProfileForm{}), oauth2.LoginRequired, Dashboard)
+	m.Get("/dashboard", oauth2.LoginRequired, Dashboard)
 	m.Get("/cv", binding.Form(ProfileForm{}), oauth2.LoginRequired, CV)
+	m.Get("/account", oauth2.LoginRequired, Account)
+	m.Get("/account-delete", oauth2.LoginRequired, AccountDelete)
 
 	// POST methods
 	m.Post("/cv-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, CVSave)
