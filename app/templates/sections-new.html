@@ -56,24 +56,24 @@
 {{ if eq .SectionType 1 }}
                                         <div class="form-group{{ range .Errors }}{{ range .FieldNames }}{{ if eq . "title" }} has-error{{ end }}{{ end }}{{ end }}">
                                             <label for="title">Section Title</label>
-                                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter section title" value="">
+                                            <input type="text" class="form-control" id="title" name="title" placeholder="Enter section title" value="{{ .Section.Title }}">
                                             {{ range .Errors }}{{ range .FieldNames }}{{ if eq . "title" }}<p class="help-block text-red">This field is required.</p>{{ end }}{{ end }}{{ end }}
                                         </div>
 {{ else if eq .SectionType 2 }}
                                         <div class="form-group{{ range .Errors }}{{ range .FieldNames }}{{ if eq . "subtitle" }} has-error{{ end }}{{ end }}{{ end }}">
                                             <label for="subtitle">Section Subtitle</label>
-                                            <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Enter section subtitle" value="">
+                                            <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Enter section subtitle" value="{{ .Section.Subtitle }}">
                                             {{ range .Errors }}{{ range .FieldNames }}{{ if eq . "subtitle" }}<p class="help-block text-red">This field is required.</p>{{ end }}{{ end }}{{ end }}
                                         </div>
 {{ else if eq .SectionType 3 }}
                                         <div class="form-group{{ range .Errors }}{{ range .FieldNames }}{{ if eq . "left" }} has-error{{ end }}{{ end }}{{ end }}">
                                             <label for="left">Paragraph Left Column</label>
-                                            <input type="text" class="form-control" id="left" name="left" placeholder="Enter left paragraph column" value="">
+                                            <input type="text" class="form-control" id="left" name="left" placeholder="Enter left paragraph column" value="{{ .Section.Left }}">
                                             {{ range .Errors }}{{ range .FieldNames }}{{ if eq . "left" }}<p class="help-block text-red">This field is required.</p>{{ end }}{{ end }}{{ end }}
                                         </div>
                                         <div class="form-group{{ range .Errors }}{{ range .FieldNames }}{{ if eq . "right" }} has-error{{ end }}{{ end }}{{ end }}">
                                             <label>Paragraph Right Column</label>
-                                            <textarea name="right" class="form-control textarea" rows="10" placeholder="Enter right paragraph column" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
+                                            <textarea name="right" class="form-control textarea" rows="10" placeholder="Enter right paragraph column" style="width: 100%; height: 200px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;">{{ .Section.Right }}</textarea>
                                             {{ range .Errors }}{{ range .FieldNames }}{{ if eq . "right" }}<p class="help-block text-red">This field is required.</p>{{ end }}{{ end }}{{ end }}
                                         </div>
 {{ end }}

@@ -64,6 +64,7 @@ func SectionsNew(r render.Render, tokens oauth2.Tokens, session sessions.Session
 	pd := NewPageData(tokens, session)
 	sectionType, _ := strconv.Atoi(params["type"])
 	pd.SectionType = sectionType
+	pd.Section = &Section{}
 	r.HTML(200, "sections-new", pd)
 }
 
@@ -72,6 +73,7 @@ func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Ses
 	pd := NewPageData(tokens, session)
 
 	pd.SectionType, _ = strconv.Atoi(params["type"])
+	pd.Section = &Section{OrderID: SectionLastOrder(pd.User)}
 
 	var title, subtitle, left, right string
 
@@ -80,18 +82,22 @@ func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Ses
 
 	if pd.SectionType == TypeTitle {
 		title = req.Form.Get("title")
+		pd.Section.Title = title
 		log.Printf("[SectionsNewPost] title: %s", title)
 		if len(title) == 0 {
 			errors.Add([]string{"title"}, "RequiredError", "This field is required.")
 		}
 	} else if pd.SectionType == TypeSubtitle {
 		subtitle = req.Form.Get("subtitle")
+		pd.Section.Subtitle = subtitle
 		if len(subtitle) == 0 {
 			errors.Add([]string{"subtitle"}, "RequiredError", "This field is required.")
 		}
 	} else if pd.SectionType == TypeParagraph {
 		left = req.Form.Get("left")
 		right = req.Form.Get("right")
+		pd.Section.Left = left
+		pd.Section.Right = right
 		if len(left) == 0 {
 			errors.Add([]string{"left"}, "RequiredError", "This field is required.")
 		}

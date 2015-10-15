@@ -104,3 +104,8 @@ func GetChartData(user *User) []int {
 
 	return data
 }
+
+// SectionLastOrder returns last order id for new user's section
+func SectionLastOrder(user *User) int {
+	return 1
+}
