@@ -44,6 +44,7 @@ func main() {
 	m.Get("/", Home)
 	m.Get("/dashboard", oauth2.LoginRequired, Dashboard)
 	m.Get("/cv", binding.Form(ProfileForm{}), oauth2.LoginRequired, CV)
+	m.Get("/cv-sections", binding.Form(ProfileForm{}), oauth2.LoginRequired, CVSections)
 	m.Get("/account", oauth2.LoginRequired, Account)
 	m.Get("/account-delete", oauth2.LoginRequired, AccountDelete)
 	m.Get("/generate-pdf", oauth2.LoginRequired, GeneratePDF)

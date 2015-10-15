@@ -28,3 +28,12 @@ type Visit struct {
 	User   User
 	UserID int `sql:"index"`
 }
+
+// Section represents one horizontal section of the CV
+type Section struct {
+	gorm.Model
+	Type  int
+	Title string `sql:"size:255"`
+	Left  string `sql:"size:255"`
+	Right string `sql:"size:255"`
+}

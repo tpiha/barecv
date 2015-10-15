@@ -45,10 +45,16 @@ func Dashboard(r render.Render, tokens oauth2.Tokens, session sessions.Session) 
 	r.HTML(200, "dashboard", pd)
 }
 
-// CV renders dashboard page
+// CV renders CV page
 func CV(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 	pd := NewPageData(tokens, session)
 	r.HTML(200, "cv", pd)
+}
+
+// CVSections renders page for editing CV sections
+func CVSections(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
+	pd := NewPageData(tokens, session)
+	r.HTML(200, "cv-sections", pd)
 }
 
 // CVSave saves dashboard page
