@@ -104,6 +104,17 @@ func AccountDelete(r render.Render, tokens oauth2.Tokens, session sessions.Sessi
 func AccountSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, username UsernameForm, err binding.Errors) {
 	pd := NewPageData(tokens, session)
 
+	if len(username.Username) > 0 {
+		existingUser := &User{Username: username.Username}
+		db.Where(existingUser).First(existingUser)
+
+		if existingUser.ID > 0 {
+			err.Add([]string{"username"}, "RequiredError", "This username is already taken.")
+		}
+
+		log.Printf("[AccountSave] existing user: %s", existingUser)
+	}
+
 	if err.Len() == 0 {
 		user := pd.User
 		user.Username = username.Username
@@ -112,7 +123,7 @@ func AccountSave(r render.Render, tokens oauth2.Tokens, session sessions.Session
 		r.Redirect(config.AppUrl+"/account", 302)
 	} else {
 		pd.Errors = &err
-		log.Printf("[AccountSave] errors: %s", err[0].FieldNames)
+		log.Printf("[AccountSave] errors: %s", err[0].Classification)
 		r.HTML(200, "account", pd)
 	}
 }

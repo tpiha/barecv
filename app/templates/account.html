@@ -59,12 +59,13 @@
                                 </div><!-- /.box-header -->
                                 <form role="form" method="POST" action="{{ .AppUrl }}/account-save">
                                     <div class="box-body">
-                                        <div class="form-group">
+                                        <div class="form-group{{ range .Errors }}{{ range .FieldNames }}{{ if eq . "username" }} has-error{{ end }}{{ end }}{{ end }}">
                                             <label for="username">Username</label>
                                             <div class="input-group">
                                                 <span class="input-group-addon"><i class="fa fa-link"></i></span>
                                                 <input type="text" class="form-control" id="username" name="username" placeholder="Enter your BareCV username" value="{{ .User.Username }}">
                                             </div>
+                                            {{ range $key, $error := .Errors }}{{ range .FieldNames }}{{ if eq . "username" }}<p class="help-block text-red">{{ $error.Message }}</p>{{ end }}{{ end }}{{ end }}
                                         </div>
                                     </div><!-- /.box-body -->
                                     <div class="box-footer">
