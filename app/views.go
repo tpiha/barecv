@@ -73,7 +73,7 @@ func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Ses
 	pd := NewPageData(tokens, session)
 
 	pd.SectionType, _ = strconv.Atoi(params["type"])
-	pd.Section = &Section{OrderID: SectionLastOrder(pd.User)}
+	pd.Section = &Section{}
 
 	var title, subtitle, left, right string
 
@@ -107,7 +107,7 @@ func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Ses
 	}
 
 	if errors.Len() == 0 {
-		section := &Section{Type: pd.SectionType, User: *pd.User}
+		section := &Section{Type: pd.SectionType, User: *pd.User, OrderID: pd.User.GetLastSectionOrderId()}
 		if pd.SectionType == TypeTitle {
 			section.Title = title
 		} else if pd.SectionType == TypeSubtitle {

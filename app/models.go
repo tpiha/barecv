@@ -22,6 +22,12 @@ type User struct {
 	Username   string `sql:"size:255"`
 }
 
+func (u *User) GetLastSectionOrderId() int {
+	sections := []*Section{}
+	db.Where(Section{UserID: int(u.ID)}).Find(&sections)
+	return len(sections)
+}
+
 // Visit represents CV visit model
 type Visit struct {
 	gorm.Model
@@ -41,9 +47,9 @@ type Section struct {
 	User     User
 	UserID   int `sql:"index"`
 	Type     int
+	OrderID  int
 	Title    string `sql:"size:255"`
 	Subtitle string `sql:"size:255"`
 	Left     string `sql:"size:255"`
 	Right    string `sql:"type:text"`
-	OrderID  int
 }
