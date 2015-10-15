@@ -50,6 +50,7 @@ func main() {
 	// POST methods
 	m.Post("/cv-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, CVSave)
 	m.Post("/cv-save-social", binding.Form(SocialNetworksForm{}), oauth2.LoginRequired, CVSaveSocial)
+	m.Post("/account-save", binding.Form(UsernameForm{}), oauth2.LoginRequired, AccountSave)
 
 	// Run server
 	// m.RunOnAddr(":8080")

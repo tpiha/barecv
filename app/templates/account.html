@@ -13,6 +13,29 @@
                 <!-- Main content -->
                 <section class="content">
 
+{{ range $key, $message := .SuccessFlash }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-success alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4>    <i class="icon fa fa-check"></i> Success!</h4>
+                                {{ $message }}
+                            </div>
+                        </div><!-- /.col (LEFT) -->
+                    </div><!-- /.row -->
+{{ end }}
+{{ range $key, $message := .ErrorFlash }}
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="alert alert-danger alert-dismissable">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <h4>    <i class="icon fa fa-ban"></i> Error!</h4>
+                                {{ $message }}
+                            </div>
+                        </div><!-- /.col (LEFT) -->
+                    </div><!-- /.row -->
+{{ end }}
+
                     <div class="row">
                         <div class="col-md-6">
                             <div class="box box-danger">
@@ -34,7 +57,7 @@
                                     <i class="fa fa-link"></i>
                                     <h3 class="box-title">Username / CV Domain</h3>
                                 </div><!-- /.box-header -->
-                                <form role="form" method="POST" action="{{ .AppUrl }}/cv-save-social">
+                                <form role="form" method="POST" action="{{ .AppUrl }}/account-save">
                                     <div class="box-body">
                                         <div class="form-group">
                                             <label for="username">Username</label>

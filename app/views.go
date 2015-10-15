@@ -99,3 +99,20 @@ func AccountDelete(r render.Render, tokens oauth2.Tokens, session sessions.Sessi
 	db.Delete(pd.User)
 	r.Redirect(config.AppUrl, 302)
 }
+
+// AccountSave renders user's account page
+func AccountSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, username UsernameForm, err binding.Errors) {
+	pd := NewPageData(tokens, session)
+
+	if err.Len() == 0 {
+		user := pd.User
+		user.Username = username.Username
+		db.Save(user)
+		session.AddFlash("You have successfully updated your BareCV username / domain.", "success")
+		r.Redirect(config.AppUrl+"/account", 302)
+	} else {
+		pd.Errors = &err
+		log.Printf("[AccountSave] errors: %s", err[0].FieldNames)
+		r.HTML(200, "account", pd)
+	}
+}
