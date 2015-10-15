@@ -7,6 +7,7 @@ import (
 	"os"
 	"os/exec"
 	"path/filepath"
+	"time"
 
 	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/oauth2"
@@ -22,6 +23,7 @@ type PageData struct {
 	ErrorFlash    []interface{}
 	Errors        *binding.Errors
 	Config        *BareCVConfig
+	ChartData     []int
 }
 
 // NewPageData is the constructor for PageData struct
@@ -76,4 +78,27 @@ func GeneratePDFHelper(user *User) {
 	os.Rename(src, newSrc)
 	log.Printf("[GeneratePDFHelper] src: %s %s", src, newSrc)
 	os.RemoveAll(dst)
+}
+
+// GetChartData returns string containing elements for drawing chart on dashboard
+func GetChartData(user *User) []int {
+	hours := time.Duration(time.Now().Round(time.Hour).Hour()) * time.Hour
+	days := time.Duration((time.Now().Day()-1)*24) * time.Hour
+	start := time.Now().Round(time.Hour).Add(-hours).Add(-days).AddDate(-1, 1, 0)
+
+	end := start.AddDate(0, 1, 0)
+
+	log.Printf("[GetChartData] start: %s %s", start, end)
+
+	var data []int
+
+	for i := 12; i > 0; i-- {
+		var visits []*Visit
+		db.Where("created_at BETWEEN ? AND ? AND user_id = ?", start, end, user.ID).Find(&visits)
+		data = append(data, len(visits))
+		start = start.AddDate(0, 1, 0)
+		end = end.AddDate(0, 1, 0)
+	}
+
+	return data
 }

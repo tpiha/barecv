@@ -21,3 +21,10 @@ type User struct {
 	Instagram  string `sql:"size:255"`
 	Username   string `sql:"size:255"`
 }
+
+// Visit represents CV visit model
+type Visit struct {
+	gorm.Model
+	User   User
+	UserID int `sql:"index"`
+}

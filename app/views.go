@@ -31,12 +31,17 @@ func ShowCV(r render.Render, req *http.Request) {
 	cv.User = &User{}
 	cv.User.Username = username
 	db.Where(cv.User).First(cv.User)
+
+	visit := &Visit{User: *cv.User}
+	db.Create(visit)
+
 	r.HTML(200, "cv-templates/default", cv, o)
 }
 
 // Dashboard renders dashboard page
 func Dashboard(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 	pd := NewPageData(tokens, session)
+	pd.ChartData = GetChartData(pd.User)
 	r.HTML(200, "dashboard", pd)
 }
 

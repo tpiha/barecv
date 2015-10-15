@@ -59,6 +59,23 @@ function delete_account() {
     window.location.href = app_url + 'account-delete';
 }
 
+function get_months() {
+    var months = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sept", "Oct", "Nov", "Dec"];
+    var newMonths = [];
+    var d = new Date();
+    var m = d.getMonth();
+
+    for (var i = m + 1; i < 12; i++) {
+        newMonths.push(months[i]);
+    }
+
+    for (var i = 0; i <= m; i++) {
+        newMonths.push(months[i]);
+    }
+
+    return newMonths;
+}
+
 function draw_chart() {
     /* ChartJS
      * -------
@@ -75,7 +92,7 @@ function draw_chart() {
     // var areaChart = new Chart(areaChartCanvas);
 
     var areaChartData = {
-        labels: ["-60min", "-55min", "-50min", "-45min", "-40min", "-35min", "-30min", "-25min", "-20min", "-15min", "-10min", "-5min", "0min", "+5min"],
+        labels: get_months(),
         datasets: [
             {
                 label: "Digital Goods",
@@ -85,7 +102,7 @@ function draw_chart() {
                 pointStrokeColor: "rgba(60,141,188,1)",
                 pointHighlightFill: "#fff",
                 pointHighlightStroke: "rgba(60,141,188,1)",
-                data: [20, 30, 10, 130, 30, 60, 50, 56, 23, 0, 34, 102, 43, 44]
+                data: __barecv_chart_data
             }
         ]
     };
