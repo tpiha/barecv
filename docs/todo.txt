@@ -8,7 +8,7 @@ TODO
 - upload files
 - additional languages
 - embed CV in website
-- dashboard - connect the stats and buttons
+- dashboard - connect the stats
 
 DONE
 
@@ -21,3 +21,4 @@ v 1.0 beta
 * account page
 * delete account
 * dashboard - visits stats, search stats
+* dashboard - connect buttons

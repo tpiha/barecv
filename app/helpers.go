@@ -45,3 +45,8 @@ func NewPageData(tokens oauth2.Tokens, session sessions.Session) *PageData {
 type UserCV struct {
 	User *User
 }
+
+// GeneratePDFHelper generates PDF using rubber
+func GeneratePDFHelper(user *User) {
+
+}

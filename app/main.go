@@ -46,6 +46,7 @@ func main() {
 	m.Get("/cv", binding.Form(ProfileForm{}), oauth2.LoginRequired, CV)
 	m.Get("/account", oauth2.LoginRequired, Account)
 	m.Get("/account-delete", oauth2.LoginRequired, AccountDelete)
+	m.Get("/generate-pdf", oauth2.LoginRequired, GeneratePDF)
 
 	// POST methods
 	m.Post("/cv-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, CVSave)

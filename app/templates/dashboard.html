@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="box-body">
                                     <p><a class="btn btn-primary btn-block" href="javascript: void null;" onclick="window.open('http://{{ .User.Username }}{{ .Config.CVBase }}');">Open Your CV</a></p>
-                                    <p class="last-item"><a class="btn btn-success btn-block" href="javascript: void null;">Generate PDF</a></p>
+                                    <p class="last-item"><a class="btn btn-success btn-block" href="javascript: void null;" onclick="window.open('{{ .AppUrl }}/generate-pdf');">Generate PDF</a></p>
                                 </div>
                             </div><!-- /.box -->
 

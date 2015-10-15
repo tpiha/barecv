@@ -127,3 +127,11 @@ func AccountSave(r render.Render, tokens oauth2.Tokens, session sessions.Session
 		r.HTML(200, "account", pd)
 	}
 }
+
+// GeneratePDF generates PDF of user's CV
+func GeneratePDF(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
+	pd := NewPageData(tokens, session)
+	url := "http://" + pd.User.Username + config.CVBase + "/pdf/" + pd.User.Username + ".pdf"
+	GeneratePDFHelper(pd.User)
+	r.Redirect(url, 302)
+}
