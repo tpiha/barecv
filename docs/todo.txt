@@ -2,7 +2,6 @@ TODO
 
 v 1.0 beta
 
-- reordering sections
 - updating sections
 
 - CV frontend / finish template
@@ -32,3 +31,4 @@ v 1.0 beta
 * dashboard - connect the stats
 * adding sections and filling them
 * deleting sections
+* reordering sections

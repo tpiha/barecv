@@ -227,3 +227,21 @@ func GeneratePDF(r render.Render, tokens oauth2.Tokens, session sessions.Session
 	GeneratePDFHelper(pd.User)
 	r.Redirect(url, 302)
 }
+
+// Reorder sections on the CV
+func Reorder(r render.Render, tokens oauth2.Tokens, session sessions.Session, req *http.Request) {
+	req.ParseForm()
+	order := req.Form["order[]"]
+
+	for i, sectionId := range order {
+		section := &Section{}
+		sId, _ := strconv.Atoi(sectionId)
+		section.ID = uint(sId)
+		db.First(section, &section.ID)
+		log.Printf("[Reorder] section: %s", section)
+		section.OrderID = i
+		db.Save(section)
+	}
+
+	r.JSON(200, map[string]interface{}{"success": true})
+}

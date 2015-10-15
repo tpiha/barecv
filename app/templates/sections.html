@@ -64,7 +64,7 @@
 {{ if .Sections }}
                                     <ul class="todo-list ui-sortable">
 {{ range $key, $section := .Sections }}
-                                        <li>
+                                        <li id="section-{{ $section.ID }}">
                                             <!-- drag handle -->
                                             <span class="handle ui-sortable-handle">
                                                 <i class="fa fa-ellipsis-v"></i>

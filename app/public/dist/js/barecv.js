@@ -172,13 +172,31 @@ if (typeof __barecv_create_editor != 'undefined' && __barecv_create_editor) {
     });
 }
 
+function update_sections_order(event, ui) {
+    var new_order = [];
+    $('.todo-list > li').each(function(index, value) {
+        var cl = value.id;
+        if (cl.length) {
+            new_order.unshift(cl.split('-')[1]);
+        }
+    });
+    $.ajax({
+        url: app_url + 'sections/reorder',
+        type: 'post',
+        data: {
+            'order': new_order
+        }
+    });
+}
+
 if (typeof __barecv_sortable_sections != 'undefined' && __barecv_sortable_sections) {
     //jQuery UI sortable for the todo list
     $(".todo-list").sortable({
-       placeholder: "sort-highlight",
+        placeholder: "sort-highlight",
         handle: ".handle",
         forcePlaceholderSize: true,
-        zIndex: 999999
+        zIndex: 999999,
+        change: update_sections_order
     });
 }
 

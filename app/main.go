@@ -56,6 +56,7 @@ func main() {
 	m.Post("/cv-save-social", binding.Form(SocialNetworksForm{}), oauth2.LoginRequired, SaveSocial)
 	m.Post("/account-save", binding.Form(UsernameForm{}), oauth2.LoginRequired, AccountSave)
 	m.Post("/sections/new/:type", oauth2.LoginRequired, SectionsNewPost)
+	m.Post("/sections/reorder", oauth2.LoginRequired, Reorder)
 
 	// Run server
 	// m.RunOnAddr(":8080")
