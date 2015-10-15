@@ -23,3 +23,8 @@ type SocialNetworksForm struct {
 type UsernameForm struct {
 	Username string `form:"username" binding:"required"`
 }
+
+// TitleForm represents form for submitting section tite
+type TitleForm struct {
+	Title string `form:"title" binding:"required"`
+}

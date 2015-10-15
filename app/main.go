@@ -44,14 +44,15 @@ func main() {
 	m.Get("/", Home)
 	m.Get("/dashboard", oauth2.LoginRequired, Dashboard)
 	m.Get("/cv", binding.Form(ProfileForm{}), oauth2.LoginRequired, CV)
-	m.Get("/cv-sections", binding.Form(ProfileForm{}), oauth2.LoginRequired, CVSections)
+	m.Get("/sections", oauth2.LoginRequired, Sections)
+	m.Get("/sections/new/:type", oauth2.LoginRequired, SectionsNew)
 	m.Get("/account", oauth2.LoginRequired, Account)
 	m.Get("/account-delete", oauth2.LoginRequired, AccountDelete)
 	m.Get("/generate-pdf", oauth2.LoginRequired, GeneratePDF)
 
 	// POST methods
-	m.Post("/cv-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, CVSave)
-	m.Post("/cv-save-social", binding.Form(SocialNetworksForm{}), oauth2.LoginRequired, CVSaveSocial)
+	m.Post("/cv-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, Save)
+	m.Post("/cv-save-social", binding.Form(SocialNetworksForm{}), oauth2.LoginRequired, SaveSocial)
 	m.Post("/account-save", binding.Form(UsernameForm{}), oauth2.LoginRequired, AccountSave)
 
 	// Run server

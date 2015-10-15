@@ -4,7 +4,7 @@ import (
 	"github.com/jinzhu/gorm"
 )
 
-// Struct representing user model
+// User represents user database model
 type User struct {
 	gorm.Model
 	Hash       string `sql:"size:255"`
@@ -29,11 +29,18 @@ type Visit struct {
 	UserID int `sql:"index"`
 }
 
+const (
+	TypeTitle     = 1
+	TypeSubtitle  = 2
+	TypeParagraph = 3
+)
+
 // Section represents one horizontal section of the CV
 type Section struct {
 	gorm.Model
-	Type  int
-	Title string `sql:"size:255"`
-	Left  string `sql:"size:255"`
-	Right string `sql:"size:255"`
+	Type    int
+	Title   string `sql:"size:255"`
+	Left    string `sql:"size:255"`
+	Right   string `sql:"type:text"`
+	OrderID int
 }

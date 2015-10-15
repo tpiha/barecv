@@ -24,6 +24,7 @@ type PageData struct {
 	Errors        *binding.Errors
 	Config        *BareCVConfig
 	ChartData     []int
+	SectionType   int
 }
 
 // NewPageData is the constructor for PageData struct

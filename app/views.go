@@ -3,8 +3,10 @@ package main
 import (
 	"log"
 	"net/http"
+	"strconv"
 	"strings"
 
+	"github.com/go-martini/martini"
 	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/oauth2"
 	"github.com/martini-contrib/render"
@@ -17,17 +19,17 @@ func Home(r render.Render, req *http.Request) {
 		o := render.HTMLOptions{Layout: ""}
 		r.HTML(200, "home", nil, o)
 	} else {
-		ShowCV(r, req)
+		Show(r, req)
 	}
 }
 
-// ShowCV renders user's CV
-func ShowCV(r render.Render, req *http.Request) {
+// Show renders user's CV
+func Show(r render.Render, req *http.Request) {
 	o := render.HTMLOptions{Layout: ""}
 	cv := &UserCV{}
 	username := strings.Replace(req.Host, config.CVBase, "", -1)
-	log.Printf("[ShowCV] URL: %s", req.Host)
-	log.Printf("[ShowCV] username: %s", username)
+	log.Printf("[Show] URL: %s", req.Host)
+	log.Printf("[Show] username: %s", username)
 	cv.User = &User{}
 	cv.User.Username = username
 	db.Where(cv.User).First(cv.User)
@@ -51,17 +53,25 @@ func CV(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 	r.HTML(200, "cv", pd)
 }
 
-// CVSections renders page for editing CV sections
-func CVSections(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
+// Sections renders page for editing CV sections
+func Sections(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 	pd := NewPageData(tokens, session)
-	r.HTML(200, "cv-sections", pd)
+	r.HTML(200, "sections", pd)
 }
 
-// CVSave saves dashboard page
-func CVSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, profile ProfileForm, err binding.Errors) {
+// SectionsNew renders page for adding new CV section
+func SectionsNew(r render.Render, tokens oauth2.Tokens, session sessions.Session, params martini.Params) {
+	pd := NewPageData(tokens, session)
+	sectionType, _ := strconv.Atoi(params["type"])
+	pd.SectionType = sectionType
+	r.HTML(200, "sections-new", pd)
+}
+
+// Save saves dashboard page
+func Save(r render.Render, tokens oauth2.Tokens, session sessions.Session, profile ProfileForm, err binding.Errors) {
 	pd := NewPageData(tokens, session)
 
-	log.Printf("[CVSave] profile: %s", profile)
+	log.Printf("[Save] profile: %s", profile)
 
 	if err.Len() == 0 {
 		user := pd.User
@@ -76,16 +86,16 @@ func CVSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, pro
 		r.Redirect(config.AppUrl+"/cv", 302)
 	} else {
 		pd.Errors = &err
-		log.Printf("[CVSave] errors: %s", err[0].FieldNames)
+		log.Printf("[Save] errors: %s", err[0].FieldNames)
 		r.HTML(200, "cv", pd)
 	}
 }
 
-// CVSaveSocial saves dashboard page
-func CVSaveSocial(r render.Render, tokens oauth2.Tokens, session sessions.Session, social SocialNetworksForm, err binding.Errors) {
+// SaveSocial saves dashboard page
+func SaveSocial(r render.Render, tokens oauth2.Tokens, session sessions.Session, social SocialNetworksForm, err binding.Errors) {
 	pd := NewPageData(tokens, session)
 
-	log.Printf("[CVSaveSocial] social: %s", social)
+	log.Printf("[SaveSocial] social: %s", social)
 
 	user := pd.User
 	user.LinkedIn = social.LinkedIn

@@ -35,22 +35,22 @@ function mark_active_link() {
         }
         else if (href.search(anchors[i].href) == 0)
         {
-            // if (hostname != anchors[i].href && hostname + '/' != anchors[i].href && anchors[i].href != ma_app_url && anchors[i].href != ma_app_url + '/')
-            // {
-            //     console.log(hostname + ' ' + anchors[i].href + " " + href)
-            //     var node = anchors[i];
-            //     if (node.className.indexOf("skip-active") == -1) {
-            //         node.className = 'active';
-            //     }
-            //     while (node.parentNode)
-            //     {
-            //         if (node.tagName.toLowerCase() == "li" && node.className.indexOf("skip-active") == -1)
-            //         {
-            //             node.className = 'active';
-            //         }
-            //         node = node.parentNode;
-            //     }
-            // }
+            if (hostname != anchors[i].href && hostname + '/' != anchors[i].href && anchors[i].href != ma_app_url && anchors[i].href != ma_app_url + '/')
+            {
+                console.log(hostname + ' ' + anchors[i].href + " " + href)
+                var node = anchors[i];
+                if (node.className.indexOf("skip-active") == -1) {
+                    node.className = 'active';
+                }
+                while (node.parentNode)
+                {
+                    if (node.tagName.toLowerCase() == "li" && node.className.indexOf("skip-active") == -1)
+                    {
+                        node.className = 'active';
+                    }
+                    node = node.parentNode;
+                }
+            }
         }
     }
 }

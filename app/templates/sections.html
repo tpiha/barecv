@@ -6,7 +6,7 @@
                     </h1>
                     <ol class="breadcrumb">
                         <li><a href="{{ .AppUrl }}/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-                        <li class="active">CV</li>
+                        <li class="active">CV Builder</li>
                     </ol>
                 </section>
 
@@ -38,33 +38,31 @@
 
                     <div class="row">
 
-                        <div class="col-md-6">
+                        <div class="col-md-4">
+                            <!-- AREA CHART -->
                             <div class="box box-danger">
                                 <div class="box-header with-border">
-                                    <i class="fa fa-user"></i>
-                                    <h3 class="box-title">General Profile</h3>
-                                </div><!-- /.box-header -->
+                                    <i class="fa fa-gears"></i>
+                                    <h3 class="box-title">Toolbar</h3>
+                                </div>
                                 <div class="box-body">
-                                    fdsfsdaf
-                                </div><!-- /.box-body -->
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary pull-right">Save Profile</button>
+                                    <a href="{{ .AppUrl }}/sections/new/1" class="btn btn-app"><i class="fa fa-plus"></i>Title</a>
+                                    <a href="{{ .AppUrl }}/sections/new/2" class="btn btn-app"><i class="fa fa-plus"></i>Subtitle</a>
+                                    <a href="{{ .AppUrl }}/sections/new/3" class="btn btn-app"><i class="fa fa-plus"></i>Paragraph</a>
                                 </div>
                             </div><!-- /.box -->
-                        </div>
 
-                        <div class="col-md-6">
+                        </div><!-- /.col (LEFT) -->
+
+                        <div class="col-md-8">
                             <div class="box box-danger">
                                 <div class="box-header with-border">
-                                    <i class="fa fa-link"></i>
-                                    <h3 class="box-title">Social Networks</h3>
+                                    <i class="fa fa-clone"></i>
+                                    <h3 class="box-title">CV Sections</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    fdsdsfa
+                                    <strong>You have no sections defined.</strong>
                                 </div><!-- /.box-body -->
-                                <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary pull-right">Save Social Networks</button>
-                                </div>
                             </div><!-- /.box -->
                         </div>
 
