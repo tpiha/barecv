@@ -15,8 +15,8 @@ func InitGoogle() {
 
 	m.Use(martinioauth2.Google(
 		&oauth2.Config{
-			ClientID:     "105212912080-l8u5kb2gsdlt7ao5qmcncg700gi566tm.apps.googleusercontent.com",
-			ClientSecret: "svF_OGZo0dyDVf3sbi0H1yfx",
+			ClientID:     "716025935670-v79abqso61n9loh6b6n9btktj73cb5qr.apps.googleusercontent.com",
+			ClientSecret: "7BiYjPxvKlkiQFJzVWqYNVqo",
 			Scopes:       []string{"https://www.googleapis.com/auth/userinfo.email", "https://www.googleapis.com/auth/userinfo.profile"},
 			RedirectURL:  config.AppUrl + "/oauth2callback",
 		},

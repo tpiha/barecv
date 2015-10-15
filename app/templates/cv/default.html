@@ -2,13 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>CV - Tihomir Piha</title>
+    <title>{{ .User.Name }} | BareCV | Your Web CV</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
     <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="ionicons/css/ionicons.css">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="/ionicons/css/ionicons.css">
+    <link rel="stylesheet" href="/cv/default.css">
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 </head>
@@ -23,17 +23,17 @@
                         <p>Marice Baric 3</p>
                         <p>10000 Zagreb</p>
                         <p>Croatia</p>
-                        <p><i class="glyphicon glyphicon-phone-alt"></i> +385 (95) 538 8411</p>
+                        <p><i class="glyphicon glyphicon-phone-alt"></i> {{ .User.Phone }}</p>
                     </div>
                     <div class="col-sm-6 name">
-                        <h1>Tihomir Piha</h1>
-                        <h3 class="light-grey">Full Stack Developer</h3>
+                        <h1>{{ .User.Name }}</h1>
+                        <h3 class="light-grey">{{ .User.Profession }}</h3>
                     </div>
                     <div class="col-sm-6 contact">
-                        <p><i class="glyphicon glyphicon-envelope"></i> <a href="javascript: void null;">piha.tihomir@gmail.com</a></p>
-                        <p><i class="ion-mouse"></i> <a href="javascript: void null;">www.synkee.com</a></p>
-                        <p><i class="ion-social-linkedin header-icon"></i> <a href="javascript: void null;">tpiha</a></p>
-                        <p><span class="ion-social-github header-icon"></span> <a href="javascript: void null;">tpiha</a></p>
+                        <p><i class="glyphicon glyphicon-envelope"></i> <a href="javascript: void null;">{{ .User.Email }}</a></p>
+                        <p><i class="ion-mouse"></i> <a href="javascript: void null;"> {{ .User.Website }}</a></p>
+                        <p><i class="ion-social-linkedin header-icon"></i> <a href="{{ .User.LinkedIn }}">tpiha</a></p>
+                        <p><span class="ion-social-github header-icon"></span> <a href="{{ .User.GitHub }}">tpiha</a></p>
                     </div>
                 </div>
 

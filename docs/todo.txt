@@ -2,13 +2,11 @@ TODO
 
 - CV frontend / finish template
 - adding sections and filling them
-- settings - color, fonts, privacy level (public, private, hash, password), template, background for margins, google analytics
+- settings - color, fonts, privacy level (public, private, hash, password), template, background for margins, google analytics, disable search engine indexing
 - generate PDF
 - add photo to CV
-- add background for margins on your CV
 - upload files
 - additional languages
-- disable search engine indexing
 - embed CV in website
 - dashboard - connect the stats and buttons
 

@@ -1,0 +1,132 @@
+%% start of file `template.tex'.
+%% Copyright 2006-2015 Xavier Danaux (xdanaux@gmail.com).
+%
+% This work may be distributed and/or modified under the
+% conditions of the LaTeX Project Public License version 1.3c,
+% available at http://www.latex-project.org/lppl/.
+
+
+\documentclass[11pt,a4paper,sans]{moderncv}
+
+\definecolor{bittersweet}{rgb}{1.0, 0.44, 0.37}
+
+% moderncv themes
+\moderncvstyle{classic}
+\moderncvcolor{red}
+
+% adjust the page margins
+\usepackage[scale=0.75]{geometry}
+\setlength{\hintscolumnwidth}{4cm}
+
+% personal data
+\name{Tihomir}{Piha}
+\title{Full Stack Developer}
+\address{Marice Baric 3}{10000 Zagreb}{Croatia}
+\phone[mobile]{+385~(95)~538~8411}
+\email{piha.tihomir@gmail.com}
+\homepage{www.synkee.com}
+\social[linkedin]{tpiha}
+\social[github]{tpiha}
+%\quote{Some quote}
+
+\AtBeginDocument{
+\hypersetup{colorlinks=true,urlcolor=bittersweet}
+}
+
+%----------------------------------------------------------------------------------
+%            content
+%----------------------------------------------------------------------------------
+\begin{document}
+%-----       resume       ---------------------------------------------------------
+\makecvtitle
+
+\section{Education}
+\cventry{2003 -- 2007}{Computer Science}{Faculty of Electrical Engineering and Computing (FER)}{Zagreb}{}{Software Department}
+\cventry{1999 -- 2003}{High School}{"Matija Mesic" Preparatory High School}{Slavonski Brod}{}{Science Department}
+
+\section{Experience}
+\subsection{Vocational}
+\cventry{Apr. 2014 -- Now}{Senior Developer and DevOps}{\href{http://teltech.co/}{TelTech Systems}}{South Amboy, New Jersey}{}{Python, Go and PHP development, Linux system administration and DevOps on \href{www.telapi.com}{TelAPI}.\newline{}\newline{}%
+Achievements:%
+\begin{itemize}%
+\item Completely developed 5 out of 18 microservices:
+  \begin{itemize}%
+  \item Autoscaling microservice (Python, Docker)
+  \item Audio transcription microservice (Python, RabbitMQ, Docker)
+  \item Centralized logging microservice (ELK stack, Docker, Ansible)
+  \item Recording processing microservice
+  \item Monitoring microservice (ELK stack)
+  \end{itemize}
+\item Moved the whole documentation to the \href{http://docs.telapi.com/}{ReadMe.io}
+\item Resolved hundreds of bugs, issues and customer requests\newline{}
+\end{itemize}}
+
+\cventry{June 2010 -- Apr. 2014}{Owner / Founder}{Click the page Ltd.}{Zagreb}{}{Founder, owner, strategy, business, programming, system administration, customer support.\newline{}\newline{}%
+Achievements:%
+\begin{itemize}%
+\item Had up to 50 satisfied customers
+\item Employed up to 5 people
+\item Worked for Coca Cola Company, Universal Music Group and many other companies
+\item Published projects:
+\begin{itemize}%
+  \item Naklikaj - website builder (raised seed investment from \href{http://www.crane.hr/}{CRANE} - Croatian Business Angels Network)
+  \item \href{https://github.com/tpiha/doolox}{Doolox} - Open Source WordPress management tool
+  \item \href{https://www.synkee.com}{Synkee} - tool for deploying websites from Dropbox, GitHub and Bitbucket
+\end{itemize}
+\item Developed countless projects and applications for clients\newline{}
+\end{itemize}}
+
+\cventry{June 2009 -- June 2010}{Senior Developer and Sysadmin}{\href{http://www.trikoder.net/}{Trikoder}}{Zagreb}{}{PHP development with in-house PHP MVC framework on high load news websites.\newline{}\newline{}%
+Achievements:%
+\begin{itemize}%
+\item URL rewrite project on the biggest Croatian news portal (\href{http://www.24sata.hr/}{24sata}) with few hundred thousands articles with different URL schemes
+\item Migrated database from MySQL to PostgreSQL for \href{http://www.24sata.hr/}{24sata} (\raise.17ex\hbox{$\scriptstyle\sim$} 150 GB database)
+\item "User Generated Content" module for \href{http://www.24sata.hr/}{24sata}
+\item Consulting about internal security strengthening and procedures
+\item Developed deployment procedures for the whole company\newline{}
+\end{itemize}}
+
+\cventry{Jan. 2007 -- June 2009}{Senior Developer and Sysadmin}{X.P. Ltd.}{Zagreb}{}{JavaScript development and in-house PHP CMS architecture and development.\newline{}\newline{}%
+Achievements:%
+\begin{itemize}%
+\item Developed first version of JavaScript library for \href{http://www.xclaim.hr/}{Xclaim} (keyword advertising)
+\item Designed and developed an in-house CMS in PHP\newline{}
+\end{itemize}}
+
+\cventry{Dec. 2004 -- Jan 2007}{Junior Developer and QA Engineer}{Uniqall, Inc.}{Zagreb}{}{Quality assurance, debugging in-house VoIP software, developing automatic testing tools, general development in C++, JavaScript and PHP, benchmarking.\newline{}\newline{}%
+Achievements:%
+\begin{itemize}%
+\item Used Ajax few months after it was defined
+\item Created a web configuration interface (Ajax) for Uniqall's VoIP server Gridborg
+\item Ran the first complete benchmark for Gridborg
+\item Created a complete testing suit for Gridborg\newline{}
+\end{itemize}}
+
+\subsection{Miscellaneous}
+
+\cventry{2001 -- 2004}{Various}{}{}{}{Various part-time jobs unrelated to the profession.}
+
+\section{Programming}
+\cvitem{Senior}{Go, Python, PHP, Bash, SQL, JavaScript, HTML, CSS}
+\cvitem{Junior}{C, C++, Ruby, Java, J2ME}
+\cvitem{Frameworks}{Django, Flask, Laravel, Symfony, jQuery, Bootstrap, AngularJS}
+\cvitem{APIs}{Dropbox, GitHub, Bitbucket, DigitalOcean, TelAPI, Name.com}
+\cvitem{VCS}{Git, Bazaar, Subversion, CVS}
+
+\section{System Administration and DevOps}
+\cvitem{Sysadmin}{Apache, nginx, BIND9, ProFTPD, OpenSSH, MySQL, PostgreSQL, OpenLDAP, RabbitMQ, Redis, Celery, Sensu, Nagios, Jenkins CI}
+\cvitem{DevOps}{Docker, Ansible, Fabric, Cuisine, Puppet, Digital Ocean, Vultr, Amazon S3, Amazon AWS}
+
+\section{Languages}
+\cvitemwithcomment{English}{Native or bilingual proficiency}{}
+\cvitemwithcomment{Croatian}{Native or bilingual proficiency}{}
+
+\section{Other}
+\cvitem{Awards}{3rd place on National Youth Fair of Technical Creativity in Pula (1998), 2nd place on National Youth Fair of Technical Creativity in Zadar (1997)}{}
+\cvitem{Driver License}{Yes}{}
+\cvitem{Activities}{KSET Students Club, Aeroclub "Brod", Taekwondo club "Brod"}{}
+
+\clearpage
+\end{document}
+
+%% end of file `template.tex'.

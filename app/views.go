@@ -2,6 +2,8 @@ package main
 
 import (
 	"log"
+	"net/http"
+	"strings"
 
 	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/oauth2"
@@ -10,9 +12,26 @@ import (
 )
 
 // Home renders home page
-func Home(r render.Render) {
+func Home(r render.Render, req *http.Request) {
+	if "http://"+req.Host == config.AppUrl {
+		o := render.HTMLOptions{Layout: ""}
+		r.HTML(200, "home", nil, o)
+	} else {
+		ShowCV(r, req)
+	}
+}
+
+// ShowCV renders user's CV
+func ShowCV(r render.Render, req *http.Request) {
 	o := render.HTMLOptions{Layout: ""}
-	r.HTML(200, "home", nil, o)
+	cv := &UserCV{}
+	username := strings.Replace(req.Host, config.CVBase, "", -1)
+	log.Printf("[ShowCV] URL: %s", req.Host)
+	log.Printf("[ShowCV] username: %s", username)
+	cv.User = &User{}
+	cv.User.Username = username
+	db.Where(cv.User).First(cv.User)
+	r.HTML(200, "cv/default", cv, o)
 }
 
 // Dashboard renders dashboard page

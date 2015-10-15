@@ -14,7 +14,7 @@ import (
 var m *martini.ClassicMartini
 
 // Config object
-var config *SaConfig
+var config *BareCVConfig
 
 // Database object
 var db *gorm.DB
@@ -22,7 +22,7 @@ var db *gorm.DB
 // Main function
 func main() {
 	// Initializa config
-	config = &SaConfig{}
+	config = &BareCVConfig{}
 	config.Load("../config.json")
 
 	// Initizalize database
@@ -52,5 +52,6 @@ func main() {
 	m.Post("/cv-save-social", binding.Form(SocialNetworksForm{}), oauth2.LoginRequired, CVSaveSocial)
 
 	// Run server
+	// m.RunOnAddr(":8080")
 	m.Run()
 }

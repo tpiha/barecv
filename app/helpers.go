@@ -17,6 +17,7 @@ type PageData struct {
 	SuccessFlash  []interface{}
 	ErrorFlash    []interface{}
 	Errors        *binding.Errors
+	Config        *BareCVConfig
 }
 
 // NewPageData is the constructor for PageData struct
@@ -35,5 +36,12 @@ func NewPageData(tokens oauth2.Tokens, session sessions.Session) *PageData {
 	pd.SuccessFlash = session.Flashes("success")
 	pd.ErrorFlash = session.Flashes("error")
 
+	pd.Config = config
+
 	return pd
+}
+
+// UserCV struct represents user's CV object
+type UserCV struct {
+	User *User
 }

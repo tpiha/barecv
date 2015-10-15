@@ -19,4 +19,5 @@ type User struct {
 	Twitter    string `sql:"size:255"`
 	GitHub     string `sql:"size:255"`
 	Instagram  string `sql:"size:255"`
+	Username   string `sql:"size:255"`
 }

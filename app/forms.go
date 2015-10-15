@@ -18,3 +18,8 @@ type SocialNetworksForm struct {
 	GitHub    string `form:"github"`
 	Instagram string `form:"instagram"`
 }
+
+// UsernameForm represents form for submitting user's profile to the database
+type UsernameForm struct {
+	Username string `form:"username" binding:"required"`
+}
