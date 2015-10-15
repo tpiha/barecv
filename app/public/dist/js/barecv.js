@@ -2,6 +2,8 @@ $(document).ready(function(){
     mark_active_link();
 });
 
+var __bare_cv_section_id = null;
+
 function mark_active_link() {
     var anchors = document.getElementsByTagName('a');
     var href = window.location.href;
@@ -178,4 +180,16 @@ if (typeof __barecv_sortable_sections != 'undefined' && __barecv_sortable_sectio
         forcePlaceholderSize: true,
         zIndex: 999999
     });
+}
+
+function prepare_delete_section(section_id) {
+    __bare_cv_section_id = section_id;
+}
+
+function cancel_delete_section() {
+    __bare_cv_section_id = null;
+}
+
+function delete_section() {
+    window.location.href = app_url + 'sections/delete/' + __bare_cv_section_id;
 }

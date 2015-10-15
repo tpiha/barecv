@@ -4,7 +4,7 @@ v 1.0 beta
 
 - reordering sections
 - updating sections
-- deleting sections
+
 - CV frontend / finish template
 - add data to the PDF
 - settings - color, fonts, privacy level (public, private, hash, password), template, background for margins, google analytics, disable search engine indexing
@@ -31,3 +31,4 @@ v 1.0 beta
 * generate PDF
 * dashboard - connect the stats
 * adding sections and filling them
+* deleting sections

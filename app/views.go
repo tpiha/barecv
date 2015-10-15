@@ -127,6 +127,17 @@ func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Ses
 	}
 }
 
+// SectionsDelete deletes a section from user's CV
+func SectionsDelete(r render.Render, tokens oauth2.Tokens, session sessions.Session, params martini.Params) {
+	sectionID, _ := strconv.Atoi(params["section_id"])
+	section := &Section{}
+
+	db.Delete(section, sectionID)
+
+	session.AddFlash("You have successfully deleted a section from your CV.", "success")
+	r.Redirect(config.AppUrl+"/sections", 302)
+}
+
 // Save saves dashboard page
 func Save(r render.Render, tokens oauth2.Tokens, session sessions.Session, profile ProfileForm, err binding.Errors) {
 	pd := NewPageData(tokens, session)
