@@ -3,6 +3,10 @@ package main
 import (
 	"crypto/md5"
 	"fmt"
+	"log"
+	"os"
+	"os/exec"
+	"path/filepath"
 
 	"github.com/martini-contrib/binding"
 	"github.com/martini-contrib/oauth2"
@@ -46,7 +50,30 @@ type UserCV struct {
 	User *User
 }
 
+// HomeDir returns application home directory
+func HomeDir() string {
+	dir, err := filepath.Abs(filepath.Dir(os.Args[0]))
+	if err != nil {
+		log.Fatal(err)
+	}
+	dir = filepath.Join(dir, "../")
+	return dir
+}
+
 // GeneratePDFHelper generates PDF using rubber
 func GeneratePDFHelper(user *User) {
-
+	dst := filepath.Join(HomeDir(), "temp", user.Username)
+	os.MkdirAll(dst, 0755)
+	cmd := fmt.Sprintf("cd %s && %s --pdf ../../latex/template.tex", dst, config.RubberBin)
+	log.Printf("[GeneratePDFHelper] cmd: %s", cmd)
+	out, err := exec.Command("sh", "-c", cmd).Output()
+	if err != nil {
+		log.Printf("[GeneratePDFHelper] error: %s", err)
+	}
+	log.Printf("[GeneratePDFHelper] out: %s", out)
+	src := filepath.Join(dst, "template.pdf")
+	newSrc := filepath.Join(HomeDir(), "app/public/pdf", user.Username+".pdf")
+	os.Rename(src, newSrc)
+	log.Printf("[GeneratePDFHelper] src: %s %s", src, newSrc)
+	os.RemoveAll(dst)
 }

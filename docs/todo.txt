@@ -3,12 +3,12 @@ TODO
 - CV frontend / finish template
 - adding sections and filling them
 - settings - color, fonts, privacy level (public, private, hash, password), template, background for margins, google analytics, disable search engine indexing
-- generate PDF
 - add photo to CV
 - upload files
 - additional languages
 - embed CV in website
 - dashboard - connect the stats
+- add data to the PDF
 
 DONE
 
@@ -22,3 +22,4 @@ v 1.0 beta
 * delete account
 * dashboard - visits stats, search stats
 * dashboard - connect buttons
+* generate PDF
