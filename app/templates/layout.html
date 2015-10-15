@@ -8,28 +8,28 @@
         <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
         <!-- Bootstrap 3.3.5 -->
-        <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="{{ .AppUrl }}/bootstrap/css/bootstrap.min.css">
         <!-- Font Awesome -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
         <!-- Ionicons -->
         <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
         <!-- Theme style -->
-        <link rel="stylesheet" href="/dist/css/AdminLTE.min.css">
+        <link rel="stylesheet" href="{{ .AppUrl }}/dist/css/AdminLTE.min.css">
         <!-- AdminLTE Skins. Choose a skin from the css/skins
                  folder instead of downloading all of them to reduce the load. -->
-        <link rel="stylesheet" href="/dist/css/skins/_all-skins.min.css">
+        <link rel="stylesheet" href="{{ .AppUrl }}/dist/css/skins/_all-skins.min.css">
         <!-- iCheck -->
-        <link rel="stylesheet" href="/plugins/iCheck/flat/blue.css">
+        <link rel="stylesheet" href="{{ .AppUrl }}/plugins/iCheck/flat/blue.css">
         <!-- jvectormap -->
-        <link rel="stylesheet" href="/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+        <link rel="stylesheet" href="{{ .AppUrl }}/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
         <!-- Date Picker -->
-        <link rel="stylesheet" href="/plugins/datepicker/datepicker3.css">
+        <link rel="stylesheet" href="{{ .AppUrl }}/plugins/datepicker/datepicker3.css">
         <!-- Daterange picker -->
-        <link rel="stylesheet" href="/plugins/daterangepicker/daterangepicker-bs3.css">
+        <link rel="stylesheet" href="{{ .AppUrl }}/plugins/daterangepicker/daterangepicker-bs3.css">
         <!-- bootstrap wysihtml5 - text editor -->
-        <link rel="stylesheet" href="/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+        <link rel="stylesheet" href="{{ .AppUrl }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
         <!-- BareCV styles -->
-        <link rel="stylesheet" href="/dist/css/style.css">
+        <link rel="stylesheet" href="{{ .AppUrl }}/dist/css/style.css">
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -134,7 +134,7 @@
         </div><!-- ./wrapper -->
 
         <!-- jQuery 2.1.4 -->
-        <script src="/plugins/jQuery/jQuery-2.1.4.min.js"></script>
+        <script src="{{ .AppUrl }}/plugins/jQuery/jQuery-2.1.4.min.js"></script>
         <!-- jQuery UI 1.11.4 -->
         <script src="https://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
         <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -142,12 +142,14 @@
             $.widget.bridge('uibutton', $.ui.button);
         </script>
         <!-- Bootstrap 3.3.5 -->
-        <script src="/bootstrap/js/bootstrap.min.js"></script>
+        <script src="{{ .AppUrl }}/bootstrap/js/bootstrap.min.js"></script>
         <!-- ChartJS 1.0.1 -->
-        <script src="/plugins/chartjs/Chart.min.js"></script>
+        <script src="{{ .AppUrl }}/plugins/chartjs/Chart.min.js"></script>
+        <!-- Bootstrap WYSIHTML5 -->
+        <script src="{{ .AppUrl }}/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
         <!-- AdminLTE App -->
-        <script src="/dist/js/app.min.js"></script>
+        <script src="{{ .AppUrl }}/dist/js/app.min.js"></script>
         <!-- BareCV -->
-        <script src="/dist/js/barecv.js?v=4"></script>
+        <script src="{{ .AppUrl }}/dist/js/barecv.js?v=4"></script>
     </body>
 </html>

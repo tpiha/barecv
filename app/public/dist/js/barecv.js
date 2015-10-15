@@ -40,7 +40,7 @@ function mark_active_link() {
                 console.log(hostname + ' ' + anchors[i].href + " " + href)
                 var node = anchors[i];
                 if (node.className.indexOf("skip-active") == -1) {
-                    node.className = 'active';
+                    // node.className = 'active';
                 }
                 while (node.parentNode)
                 {
@@ -152,4 +152,20 @@ function draw_chart() {
 
 if (typeof __barecv_draw_chart != 'undefined' && __barecv_draw_chart) {
     draw_chart();
+}
+
+if (typeof __barecv_create_editor != 'undefined' && __barecv_create_editor) {
+    $("textarea").wysihtml5({
+        toolbar: {
+            "font-styles": false,
+            "emphasis": true,
+            "lists": true,
+            "html": false,
+            "link": true,
+            "image": false,
+            "color": false,
+            "blockquote": false,
+            "size": 'sm' //default: none, other options are xs, sm, lg
+        }
+    });
 }
