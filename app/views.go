@@ -31,7 +31,7 @@ func ShowCV(r render.Render, req *http.Request) {
 	cv.User = &User{}
 	cv.User.Username = username
 	db.Where(cv.User).First(cv.User)
-	r.HTML(200, "cv/default", cv, o)
+	r.HTML(200, "cv-templates/default", cv, o)
 }
 
 // Dashboard renders dashboard page
