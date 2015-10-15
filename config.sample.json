@@ -1,5 +1,5 @@
 {
-    "postgres":         "user=postgres password=ouy2kcuF  dbname=tinycv sslmode=disable",
+    "postgres":         "user=dbuser password=dbpass  dbname=dbname sslmode=disable",
     "log_sql":          false,
     "app_url":          "http://www.barecv.com:3000",
     "cv_base":          ".barecv.com:3000",
