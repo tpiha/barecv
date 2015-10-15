@@ -38,9 +38,12 @@ const (
 // Section represents one horizontal section of the CV
 type Section struct {
 	gorm.Model
-	Type    int
-	Title   string `sql:"size:255"`
-	Left    string `sql:"size:255"`
-	Right   string `sql:"type:text"`
-	OrderID int
+	User     User
+	UserID   int `sql:"index"`
+	Type     int
+	Title    string `sql:"size:255"`
+	Subtitle string `sql:"size:255"`
+	Left     string `sql:"size:255"`
+	Right    string `sql:"type:text"`
+	OrderID  int
 }

@@ -25,6 +25,7 @@ type PageData struct {
 	Config        *BareCVConfig
 	ChartData     []int
 	SectionType   int
+	Section       *Section
 }
 
 // NewPageData is the constructor for PageData struct

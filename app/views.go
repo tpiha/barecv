@@ -67,6 +67,59 @@ func SectionsNew(r render.Render, tokens oauth2.Tokens, session sessions.Session
 	r.HTML(200, "sections-new", pd)
 }
 
+// SectionsNewPost saves section to the database
+func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Session, params martini.Params, req *http.Request) {
+	pd := NewPageData(tokens, session)
+
+	pd.SectionType, _ = strconv.Atoi(params["type"])
+
+	var title, subtitle, left, right string
+
+	errors := &binding.Errors{}
+	req.ParseForm()
+
+	if pd.SectionType == TypeTitle {
+		title = req.Form.Get("title")
+		log.Printf("[SectionsNewPost] title: %s", title)
+		if len(title) == 0 {
+			errors.Add([]string{"title"}, "RequiredError", "This field is required.")
+		}
+	} else if pd.SectionType == TypeSubtitle {
+		subtitle = req.Form.Get("subtitle")
+		if len(subtitle) == 0 {
+			errors.Add([]string{"subtitle"}, "RequiredError", "This field is required.")
+		}
+	} else if pd.SectionType == TypeParagraph {
+		left = req.Form.Get("left")
+		right = req.Form.Get("right")
+		if len(left) == 0 {
+			errors.Add([]string{"left"}, "RequiredError", "This field is required.")
+		}
+		if len(right) == 0 {
+			errors.Add([]string{"right"}, "RequiredError", "This field is required.")
+		}
+	}
+
+	if errors.Len() == 0 {
+		section := &Section{Type: pd.SectionType, User: *pd.User}
+		if pd.SectionType == TypeTitle {
+			section.Title = title
+		} else if pd.SectionType == TypeSubtitle {
+			section.Subtitle = subtitle
+		} else if pd.SectionType == TypeParagraph {
+			section.Left = left
+			section.Right = right
+		}
+		db.Save(section)
+		session.AddFlash("You have successfully added a new section to your CV.", "success")
+		r.Redirect(config.AppUrl+"/sections", 302)
+	} else {
+		pd.Errors = errors
+		log.Printf("[Save] errors: %s", errors)
+		r.HTML(200, "sections-new", pd)
+	}
+}
+
 // Save saves dashboard page
 func Save(r render.Render, tokens oauth2.Tokens, session sessions.Session, profile ProfileForm, err binding.Errors) {
 	pd := NewPageData(tokens, session)

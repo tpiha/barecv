@@ -51,7 +51,7 @@
                                     <h3 class="box-title">New Paragraph</h3>
 {{ end }}
                                 </div><!-- /.box-header -->
-                                <form action="{{ .AppUrl }}/sections/new/{{ .SectionType }}">
+                                <form action="{{ .AppUrl }}/sections/new/{{ .SectionType }}" method="POST">
                                     <div class="box-body pad">
 {{ if eq .SectionType 1 }}
                                         <div class="form-group{{ range .Errors }}{{ range .FieldNames }}{{ if eq . "title" }} has-error{{ end }}{{ end }}{{ end }}">
