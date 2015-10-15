@@ -22,10 +22,18 @@ type User struct {
 	Username   string `sql:"size:255"`
 }
 
+// GetLastSectionOrderId gets order id for newly created section
 func (u *User) GetLastSectionOrderId() int {
 	sections := []*Section{}
 	db.Where(Section{UserID: int(u.ID)}).Find(&sections)
 	return len(sections)
+}
+
+// GetSections returns user's sections ordered by ID
+func (u *User) GetSections() []*Section {
+	sections := []*Section{}
+	db.Where(Section{UserID: int(u.ID)}).Order("order_id").Find(&sections)
+	return sections
 }
 
 // Visit represents CV visit model
@@ -52,4 +60,31 @@ type Section struct {
 	Subtitle string `sql:"size:255"`
 	Left     string `sql:"size:255"`
 	Right    string `sql:"type:text"`
+}
+
+// String returns string representation of the section object
+func (s *Section) String() string {
+	if s.Type == TypeTitle {
+		return s.Title
+	} else if s.Type == TypeSubtitle {
+		return s.Subtitle
+	} else if s.Type == TypeParagraph {
+		return s.Left
+	}
+	return ""
+}
+
+// TypeString returns section type as a string
+func (s *Section) TypeString() string {
+	sType := ""
+
+	if s.Type == TypeTitle {
+		sType = "title"
+	} else if s.Type == TypeSubtitle {
+		sType = "subtitle"
+	} else if s.Type == TypeParagraph {
+		sType = "paragraph"
+	}
+
+	return sType
 }

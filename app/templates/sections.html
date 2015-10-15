@@ -61,7 +61,26 @@
                                     <h3 class="box-title">CV Sections</h3>
                                 </div><!-- /.box-header -->
                                 <div class="box-body">
-                                    <strong>You have no sections defined.</strong>
+                                    <ul class="todo-list ui-sortable">
+{{ range $key, $section := .Sections }}
+                                        <li>
+                                            <!-- drag handle -->
+                                            <span class="handle ui-sortable-handle">
+                                                <i class="fa fa-ellipsis-v"></i>
+                                                <i class="fa fa-ellipsis-v"></i>
+                                            </span>
+                                            <!-- Emphasis label -->
+                                            <small class="label label-primary">{{ $section.TypeString }}</small>
+                                            <span class="text">{{ $section.String }}</span>
+                                            <!-- General tools such as edit or delete-->
+                                            <div class="tools">
+                                                <i class="fa fa-edit"></i>
+                                                <i class="fa fa-trash-o"></i>
+                                            </div>
+                                        </li>
+{{ end }}
+                                    </ul>
+                                    <!-- <strong>You have no sections defined.</strong> -->
                                 </div><!-- /.box-body -->
                             </div><!-- /.box -->
                         </div>
@@ -69,3 +88,7 @@
                     </div><!-- /.row -->
 
                 </section><!-- /.content -->
+
+<script type="text/javascript">
+    __barecv_sortable_sections = true;
+</script>

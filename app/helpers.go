@@ -26,6 +26,7 @@ type PageData struct {
 	ChartData     []int
 	SectionType   int
 	Section       *Section
+	Sections      []*Section
 }
 
 // NewPageData is the constructor for PageData struct

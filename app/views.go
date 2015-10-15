@@ -56,6 +56,7 @@ func CV(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 // Sections renders page for editing CV sections
 func Sections(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 	pd := NewPageData(tokens, session)
+	pd.Sections = pd.User.GetSections()
 	r.HTML(200, "sections", pd)
 }
 

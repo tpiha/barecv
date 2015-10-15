@@ -169,3 +169,13 @@ if (typeof __barecv_create_editor != 'undefined' && __barecv_create_editor) {
         }
     });
 }
+
+if (typeof __barecv_sortable_sections != 'undefined' && __barecv_sortable_sections) {
+    //jQuery UI sortable for the todo list
+    $(".todo-list").sortable({
+       placeholder: "sort-highlight",
+        handle: ".handle",
+        forcePlaceholderSize: true,
+        zIndex: 999999
+    });
+}
