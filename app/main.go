@@ -46,8 +46,8 @@ func main() {
 	m.Get("/cv", binding.Form(ProfileForm{}), oauth2.LoginRequired, CV)
 	m.Get("/sections", oauth2.LoginRequired, Sections)
 	m.Get("/sections/new/:type", oauth2.LoginRequired, SectionsNew)
-	m.Get("/sections/:type/:section_id", oauth2.LoginRequired, SectionsUpdate)
 	m.Get("/sections/delete/:section_id", oauth2.LoginRequired, SectionsDelete)
+	m.Get("/sections/:type/:section_id", oauth2.LoginRequired, SectionsUpdate)
 	m.Get("/account", oauth2.LoginRequired, Account)
 	m.Get("/account-delete", oauth2.LoginRequired, AccountDelete)
 	m.Get("/generate-pdf", oauth2.LoginRequired, GeneratePDF)
@@ -56,7 +56,8 @@ func main() {
 	m.Post("/cv-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, Save)
 	m.Post("/cv-save-social", binding.Form(SocialNetworksForm{}), oauth2.LoginRequired, SaveSocial)
 	m.Post("/account-save", binding.Form(UsernameForm{}), oauth2.LoginRequired, AccountSave)
-	m.Post("/sections/new/:type", oauth2.LoginRequired, SectionsNewPost)
+	m.Post("/sections/new/:type", oauth2.LoginRequired, SectionsPost)
+	m.Post("/sections/:type/:section_id", oauth2.LoginRequired, SectionsPost)
 	m.Post("/sections/reorder", oauth2.LoginRequired, Reorder)
 
 	// Run server

@@ -52,6 +52,7 @@
 {{ end }}
                                 </div><!-- /.box-header -->
                                 <form action="{{ .AppUrl }}/sections/{{ .SectionType }}/{{ .Section.ID }}" method="POST">
+                                    <input type="hidden" name="action" value="update">
                                     <div class="box-body pad">
 {{ if eq .SectionType 1 }}
                                         <div class="form-group{{ range .Errors }}{{ range .FieldNames }}{{ if eq . "title" }} has-error{{ end }}{{ end }}{{ end }}">

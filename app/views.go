@@ -80,12 +80,16 @@ func SectionsUpdate(r render.Render, tokens oauth2.Tokens, session sessions.Sess
 	r.HTML(200, "sections-update", pd)
 }
 
-// SectionsNewPost saves section to the database
-func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Session, params martini.Params, req *http.Request) {
+// SectionsPost saves new section to the database
+func SectionsPost(r render.Render, tokens oauth2.Tokens, session sessions.Session, params martini.Params, req *http.Request) {
 	pd := NewPageData(tokens, session)
+	req.ParseForm()
 
 	pd.SectionType, _ = strconv.Atoi(params["type"])
 	pd.Section = &Section{}
+	action := req.Form.Get("action")
+
+	log.Printf("[SectionPost] action: %s", action)
 
 	var title, subtitle, left, right string
 
@@ -95,7 +99,7 @@ func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Ses
 	if pd.SectionType == TypeTitle {
 		title = req.Form.Get("title")
 		pd.Section.Title = title
-		log.Printf("[SectionsNewPost] title: %s", title)
+		log.Printf("[SectionsPost] title: %s", title)
 		if len(title) == 0 {
 			errors.Add([]string{"title"}, "RequiredError", "This field is required.")
 		}
@@ -119,7 +123,15 @@ func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Ses
 	}
 
 	if errors.Len() == 0 {
-		section := &Section{Type: pd.SectionType, User: *pd.User, OrderID: pd.User.GetLastSectionOrderId()}
+		section := &Section{}
+		if action == "update" {
+			sectionID, _ := strconv.Atoi(params["section_id"])
+			db.First(section, sectionID)
+		} else {
+			section.Type = pd.SectionType
+			section.User = *pd.User
+			section.OrderID = pd.User.GetLastSectionOrderId()
+		}
 		if pd.SectionType == TypeTitle {
 			section.Title = title
 		} else if pd.SectionType == TypeSubtitle {
@@ -129,7 +141,11 @@ func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Ses
 			section.Right = right
 		}
 		db.Save(section)
-		session.AddFlash("You have successfully added a new section to your CV.", "success")
+		if action == "update" {
+			session.AddFlash("You have successfully updated a section of your CV.", "success")
+		} else {
+			session.AddFlash("You have successfully added a new section to your CV.", "success")
+		}
 		r.Redirect(config.AppUrl+"/sections", 302)
 	} else {
 		pd.Errors = errors
