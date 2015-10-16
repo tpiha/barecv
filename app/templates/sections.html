@@ -74,7 +74,7 @@
                                             </span>
                                             <!-- Emphasis label -->
                                             <small class="label label-success">{{ $section.TypeString }}</small>
-                                            <span class="text">{{ $section.String }}</span>
+                                            <a href="{{ $.AppUrl }}/sections/{{ $section.Type }}/{{ $section.ID }}"><span class="text">{{ $section.String }}</span></a>
                                             <!-- General tools such as edit or delete-->
                                             <div class="tools">
                                                 <i class="fa fa-edit" onclick="window.location.href = app_url + 'sections/' + {{ $section.Type }} + '/' + {{ $section.ID }}"></i>

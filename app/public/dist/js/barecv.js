@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    // mark_active_link();
+    mark_active_link();
 });
 
 var __bare_cv_section_id = null;
@@ -11,12 +11,14 @@ function mark_active_link() {
     var ma_app_url = app_url;
     ma_app_url = ma_app_url.substring(0, ma_app_url.length - 1);
 
-    // if (window.location.port == '8000')
-    //     hostname += ':8000'
-    // else if (window.location.port == '8080')
-    //     hostname += ':8080'
-    // else if (window.location.port == '5000')
-    //     hostname += ':5000'
+    if (window.location.port == '8000')
+        hostname += ':8000'
+    else if (window.location.port == '8080')
+        hostname += ':8080'
+    else if (window.location.port == '5000')
+        hostname += ':5000'
+    else if (window.location.port == '3000')
+        hostname += ':3000'
 
     for (var i = 0; i < anchors.length; i++)
     {
@@ -39,14 +41,14 @@ function mark_active_link() {
         {
             if (hostname != anchors[i].href && hostname + '/' != anchors[i].href && anchors[i].href != ma_app_url && anchors[i].href != ma_app_url + '/')
             {
-                console.log(hostname + ' ' + anchors[i].href + " " + href)
+                // console.log(hostname + ' ' + anchors[i].href + " " + href)
                 var node = anchors[i];
                 if (node.className.indexOf("skip-active") == -1) {
                     // node.className = 'active';
                 }
                 while (node.parentNode)
                 {
-                    if (node.tagName.toLowerCase() == "li" && node.className.indexOf("skip-active") == -1)
+                    if (node.tagName.toLowerCase() == "li" && node.className.indexOf("skip-active") == -1 && node.className.indexOf("wysihtml5-toolbar") == -1 && anchors[i].href.length)
                     {
                         node.className = 'active';
                     }
