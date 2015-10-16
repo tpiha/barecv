@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    mark_active_link();
+    // mark_active_link();
 });
 
 var __bare_cv_section_id = null;
@@ -159,10 +159,10 @@ if (typeof __barecv_draw_chart != 'undefined' && __barecv_draw_chart) {
 if (typeof __barecv_create_editor != 'undefined' && __barecv_create_editor) {
     $("textarea").wysihtml5({
         toolbar: {
-            "font-styles": false,
+            "font-styles": true,
             "emphasis": true,
             "lists": true,
-            "html": false,
+            "html": true,
             "link": true,
             "image": false,
             "color": false,
@@ -177,7 +177,7 @@ function update_sections_order(event, ui) {
     $('.todo-list > li').each(function(index, value) {
         var cl = value.id;
         if (cl.length) {
-            new_order.unshift(cl.split('-')[1]);
+            new_order.push(cl.split('-')[1]);
         }
     });
     $.ajax({
@@ -196,7 +196,7 @@ if (typeof __barecv_sortable_sections != 'undefined' && __barecv_sortable_sectio
         handle: ".handle",
         forcePlaceholderSize: true,
         zIndex: 999999,
-        change: update_sections_order
+        update: update_sections_order
     });
 }
 

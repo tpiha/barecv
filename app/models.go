@@ -1,6 +1,8 @@
 package main
 
 import (
+	"html/template"
+
 	"github.com/jinzhu/gorm"
 )
 
@@ -87,4 +89,8 @@ func (s *Section) TypeString() string {
 	}
 
 	return sType
+}
+
+func (s *Section) GetRight() template.HTML {
+	return template.HTML(s.Right)
 }

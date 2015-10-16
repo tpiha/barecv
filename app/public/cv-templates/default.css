@@ -2,15 +2,24 @@
 .address { margin-top: 100px; }
 .contact p, .address p { text-align: right; margin-bottom: 0px; font-weight: 100; font-style: italic; }
 a { color: #E80000; text-decoration: underline; }
-.name h3 { font-style: italic; }
+.name {  }
+.name h3 { font-style: italic; margin-bottom: 0px; }
 .grey { color: #464646; }
 .light-grey { color: #9E9E9E; }
 .red { color: #E80000; }
 .name > h1 { margin-top: 0; }
 .name > h3 { margin-top: 0; }
-.first-section { margin-top: 50px; }
-.section h4 { font-size: 1.5em; }
 .section-rule { border-bottom: 8px #E80000 solid; }
 .period { text-align: right; }
 .header-icon { font-size: 1.2em; }
 .footer { margin-bottom: 80px; }
+h6 { margin-top: -5px; }
+h4 { font-size: 1.5em; }
+
+.bottom-row { display: table; width: 100%; margin-top: 50px; margin-bottom: 50px; }
+.bottom-column
+{
+    float: none;
+    display: table-cell;
+    vertical-align: bottom;
+}
