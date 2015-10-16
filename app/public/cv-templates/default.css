@@ -1,6 +1,6 @@
 * { font-family: 'Roboto'; }
 .address { margin-top: 100px; }
-.contact p, .address p { text-align: right; margin-bottom: 0px; font-weight: 100; font-style: italic; }
+.contact p, .address p { text-align: right; margin-bottom: 0px; font-weight: 100; font-style: italic; min-width: 250px; }
 a { color: #E80000; text-decoration: underline; }
 .name {  }
 .name h3 { font-style: italic; margin-bottom: 0px; }
@@ -12,7 +12,7 @@ a { color: #E80000; text-decoration: underline; }
 .section-rule { border-bottom: 8px #E80000 solid; }
 .period { text-align: right; }
 .header-icon { font-size: 1.2em; }
-.footer { margin-bottom: 80px; }
+.footer { margin-bottom: 50px; }
 h6 { margin-top: -5px; }
 h4 { font-size: 1.5em; }
 
@@ -22,4 +22,10 @@ h4 { font-size: 1.5em; }
     float: none;
     display: table-cell;
     vertical-align: bottom;
+}
+
+@media screen and (max-width: 768px) {
+    .section-rule { display: none; }
+    h4 { border-bottom: 3px solid #E80000; }
+    .period { text-align: left; font-weight: bold; font-style: italic; }
 }

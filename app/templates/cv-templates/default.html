@@ -31,19 +31,19 @@
                         <p><i class="glyphicon glyphicon-envelope"></i> <a target="_blank" href="mailto:{{ .User.Email }}">{{ .User.Email }}</a></p>
                         <p><i class="ion-mouse"></i> <a target="_blank" href="http://{{ .User.Website }}"> {{ .User.Website }}</a></p>
 {{ if .User.LinkedIn }}
-                        <p><i class="ion-social-linkedin header-icon"></i> <a href="{{ .User.LinkedIn }}">{{ .User.LinkedIn }}</a></p>
+                        <p><i class="ion-social-linkedin header-icon"></i> <a target="_blank" href="https://{{ .User.LinkedIn }}">{{ .User.LinkedIn }}</a></p>
 {{ end }}
 {{ if .User.Facebook }}
-                        <p><i class="ion-social-facebook header-icon"></i> <a href="{{ .User.Facebook }}">{{ .User.Facebook }}</a></p>
+                        <p><i class="ion-social-facebook header-icon"></i> <a target="_blank" href="https://{{ .User.Facebook }}">{{ .User.Facebook }}</a></p>
 {{ end }}
 {{ if .User.Twitter }}
-                        <p><i class="ion-social-twitter header-icon"></i> <a href="{{ .User.Twitter }}">{{ .User.Twitter }}</a></p>
+                        <p><i class="ion-social-twitter header-icon"></i> <a target="_blank" href="https://{{ .User.Twitter }}">{{ .User.Twitter }}</a></p>
 {{ end }}
 {{ if .User.GitHub }}
-                        <p><i class="ion-social-github header-icon"></i> <a href="{{ .User.GitHub }}">{{ .User.GitHub }}</a></p>
+                        <p><i class="ion-social-github header-icon"></i> <a target="_blank" href="https://{{ .User.GitHub }}">{{ .User.GitHub }}</a></p>
 {{ end }}
 {{ if .User.Instagram }}
-                        <p><i class="ion-social-instagram header-icon"></i> <a href="{{ .User.Instagram }}">{{ .User.Instagram }}</a></p>
+                        <p><i class="ion-social-instagram header-icon"></i> <a target="_blank" href="https://{{ .User.Instagram }}">{{ .User.Instagram }}</a></p>
 {{ end }}
                     </div>
                 </div>

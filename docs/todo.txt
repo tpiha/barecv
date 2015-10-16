@@ -2,7 +2,6 @@ TODO
 
 v 1.0 beta
 
-- template - mobile version
 - add data to the PDF
 - settings - color, fonts, privacy level (public, private, hash, password), template, background for margins, google analytics, disable search engine indexing
 - add photo to CV
@@ -31,3 +30,4 @@ v 1.0 beta
 * deleting sections
 * reordering sections
 * updating sections
+* CV frontend / finish template

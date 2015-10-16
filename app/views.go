@@ -196,11 +196,11 @@ func SaveSocial(r render.Render, tokens oauth2.Tokens, session sessions.Session,
 	log.Printf("[SaveSocial] social: %s", social)
 
 	user := pd.User
-	user.LinkedIn = social.LinkedIn
-	user.Facebook = social.Facebook
-	user.Twitter = social.Twitter
-	user.GitHub = social.GitHub
-	user.Instagram = social.Instagram
+	user.LinkedIn = strings.Replace(strings.Replace(social.LinkedIn, "https://", "", -1), "http://", "", -1)
+	user.Facebook = strings.Replace(strings.Replace(social.Facebook, "https://", "", -1), "http://", "", -1)
+	user.Twitter = strings.Replace(strings.Replace(social.Twitter, "https://", "", -1), "http://", "", -1)
+	user.GitHub = strings.Replace(strings.Replace(social.GitHub, "https://", "", -1), "http://", "", -1)
+	user.Instagram = strings.Replace(strings.Replace(social.Instagram, "https://", "", -1), "http://", "", -1)
 	db.Save(user)
 	session.AddFlash("You have successfully updated your BareCV profile.", "success")
 	r.Redirect(config.AppUrl+"/cv", 302)
