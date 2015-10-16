@@ -77,7 +77,7 @@
                                             <span class="text">{{ $section.String }}</span>
                                             <!-- General tools such as edit or delete-->
                                             <div class="tools">
-                                                <i class="fa fa-edit"></i>
+                                                <i class="fa fa-edit" onclick="window.location.href = app_url + 'sections/' + {{ $section.Type }} + '/' + {{ $section.ID }}"></i>
                                                 <i data-toggle="modal" data-target="#delete_section_modal" class="fa fa-trash-o" onclick="prepare_delete_section({{ $section.ID }});"></i>
                                             </div>
                                         </li>

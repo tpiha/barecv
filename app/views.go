@@ -69,6 +69,17 @@ func SectionsNew(r render.Render, tokens oauth2.Tokens, session sessions.Session
 	r.HTML(200, "sections-new", pd)
 }
 
+// SectionsUpdate renders page for updating CV section
+func SectionsUpdate(r render.Render, tokens oauth2.Tokens, session sessions.Session, params martini.Params) {
+	pd := NewPageData(tokens, session)
+	sectionType, _ := strconv.Atoi(params["type"])
+	sectionID, _ := strconv.Atoi(params["section_id"])
+	pd.SectionType = sectionType
+	pd.Section = &Section{}
+	db.First(pd.Section, sectionID)
+	r.HTML(200, "sections-update", pd)
+}
+
 // SectionsNewPost saves section to the database
 func SectionsNewPost(r render.Render, tokens oauth2.Tokens, session sessions.Session, params martini.Params, req *http.Request) {
 	pd := NewPageData(tokens, session)
