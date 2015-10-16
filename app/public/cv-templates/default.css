@@ -1,8 +1,9 @@
 * { font-family: 'Roboto'; }
-.address { margin-top: 100px; }
+.address {  }
 .contact p, .address p { text-align: right; margin-bottom: 0px; font-weight: 100; font-style: italic; min-width: 250px; }
+.contact { padding-right: 0px; }
 a { color: #E80000; text-decoration: underline; }
-.name {  }
+.name { padding-left: 0px; }
 .name h3 { font-style: italic; margin-bottom: 0px; }
 .grey { color: #464646; }
 .light-grey { color: #9E9E9E; }
@@ -16,7 +17,7 @@ a { color: #E80000; text-decoration: underline; }
 h6 { margin-top: -5px; }
 h4 { font-size: 1.5em; }
 
-.bottom-row { display: table; width: 100%; margin-top: 50px; margin-bottom: 50px; }
+.bottom-row { display: table; width: 100%; margin: 50px 0px; }
 .bottom-column
 {
     float: none;
