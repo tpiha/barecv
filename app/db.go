@@ -22,7 +22,7 @@ func InitDb() *gorm.DB {
 	db.DB().SetMaxOpenConns(100)
 	db.LogMode(config.LogSQL)
 
-	db.AutoMigrate(&User{}, &Visit{}, &Section{})
+	db.AutoMigrate(&User{}, &Visit{}, &Section{}, &Setting{})
 
 	return &db
 }

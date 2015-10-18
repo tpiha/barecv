@@ -7,7 +7,6 @@ v 1.0 beta
 - add photo to CV
 - upload files
 
-
 v 1.1 beta
 
 - additional languages
