@@ -202,6 +202,10 @@ if (typeof __barecv_sortable_sections != 'undefined' && __barecv_sortable_sectio
     });
 }
 
+if (typeof __barecv_colorpicker != 'undefined' && __barecv_colorpicker) {
+    $(".my-colorpicker2").colorpicker();
+}
+
 function prepare_delete_section(section_id) {
     __bare_cv_section_id = section_id;
 }

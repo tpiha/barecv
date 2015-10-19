@@ -33,9 +33,14 @@ func Show(r render.Render, req *http.Request) {
 	cv.User = &User{}
 	cv.User.Username = username
 	db.Where(cv.User).First(cv.User)
+	cv.Settings = &Setting{}
+	cv.Settings.UserID = int(cv.User.ID)
+	db.Where(cv.Settings).First(cv.Settings)
 
 	visit := &Visit{User: *cv.User}
 	db.Create(visit)
+
+	log.Printf("[Show] font: %s", cv.Settings.Font)
 
 	r.HTML(200, "cv-templates/default", cv, o)
 }
@@ -271,4 +276,26 @@ func Reorder(r render.Render, tokens oauth2.Tokens, session sessions.Session, re
 	}
 
 	r.JSON(200, map[string]interface{}{"success": true})
+}
+
+// Settings renders user's settings page
+func Settings(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
+	pd := NewPageData(tokens, session)
+	pd.Fonts = GetFonts()
+	r.HTML(200, "settings", pd)
+}
+
+// SettingsSave saves user's settings
+func SettingsSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, settings SettingsForm, err binding.Errors) {
+	pd := NewPageData(tokens, session)
+
+	log.Printf("[SettingsSave] settings: %s", settings)
+
+	userSettings := pd.Settings
+	userSettings.Color = settings.Color
+	userSettings.Font = settings.Font
+	db.Save(userSettings)
+
+	session.AddFlash("You have successfully saved your settings.", "success")
+	r.Redirect(config.AppUrl+"/settings", 302)
 }

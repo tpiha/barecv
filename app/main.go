@@ -2,6 +2,9 @@ package main
 
 import (
 	_ "github.com/lib/pq"
+	"html/template"
+	"log"
+	"net/url"
 
 	"github.com/go-martini/martini"
 	"github.com/jinzhu/gorm"
@@ -35,6 +38,15 @@ func main() {
 	m.Use(render.Renderer(render.Options{
 		Extensions: []string{".html"},
 		Layout:     "layout",
+		Funcs: []template.FuncMap{
+			{
+				"unescaped": func(args ...interface{}) template.HTML {
+					log.Printf("[main] unescaped: %s", args[0].(string))
+					urlStr, _ := url.QueryUnescape(args[0].(string))
+					return template.HTML(urlStr)
+				},
+			},
+		},
 	}))
 
 	// Initializes Google auth
@@ -51,6 +63,7 @@ func main() {
 	m.Get("/account", oauth2.LoginRequired, Account)
 	m.Get("/account-delete", oauth2.LoginRequired, AccountDelete)
 	m.Get("/generate-pdf", oauth2.LoginRequired, GeneratePDF)
+	m.Get("/settings", oauth2.LoginRequired, Settings)
 
 	// POST methods
 	m.Post("/cv-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, Save)
@@ -59,6 +72,7 @@ func main() {
 	m.Post("/sections/new/:type", oauth2.LoginRequired, SectionsPost)
 	m.Post("/sections/:type/:section_id", oauth2.LoginRequired, SectionsPost)
 	m.Post("/sections/reorder", oauth2.LoginRequired, Reorder)
+	m.Post("/settings", binding.Form(SettingsForm{}), oauth2.LoginRequired, SettingsSave)
 
 	// Run server
 	// m.RunOnAddr(":8080")

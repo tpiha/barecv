@@ -2,7 +2,9 @@ package main
 
 import (
 	"crypto/md5"
+	"encoding/json"
 	"fmt"
+	"io/ioutil"
 	"log"
 	"os"
 	"os/exec"
@@ -27,6 +29,8 @@ type PageData struct {
 	SectionType   int
 	Section       *Section
 	Sections      []*Section
+	Settings      *Setting
+	Fonts         []*Font
 }
 
 // NewPageData is the constructor for PageData struct
@@ -47,12 +51,18 @@ func NewPageData(tokens oauth2.Tokens, session sessions.Session) *PageData {
 
 	pd.Config = config
 
+	pd.Settings = &Setting{}
+	db.Where(&Setting{UserID: int(pd.User.ID)}).First(pd.Settings)
+
+	log.Printf("[NewPageData] settings: %s", pd.Settings)
+
 	return pd
 }
 
 // UserCV struct represents user's CV object
 type UserCV struct {
-	User *User
+	User     *User
+	Settings *Setting
 }
 
 // HomeDir returns application home directory
@@ -104,4 +114,30 @@ func GetChartData(user *User) []int {
 	}
 
 	return data
+}
+
+// type Fonts struct {
+// 	Fonts []Font
+// }
+
+type Font struct {
+	CSSName    string `json:"css-name,omitempty"`
+	FontFamily string `json:"font-family,omitempty"`
+	FontName   string `json:"font-name,omitempty"`
+}
+
+func GetFonts() []*Font {
+	content, err := ioutil.ReadFile(filepath.Join(HomeDir(), "fonts.json"))
+	if err != nil {
+		fmt.Print("Error:", err)
+	}
+
+	var fonts []*Font
+
+	err = json.Unmarshal(content, &fonts)
+	if err != nil {
+		log.Print("Error:", err)
+	}
+
+	return fonts
 }

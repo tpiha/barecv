@@ -6,11 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic' rel='stylesheet' type='text/css'>
+{{ if eq .Settings.Font "Roboto" }}
+    <link href='https://fonts.googleapis.com/css?family={{ unescaped .Settings.Font }}:100,300,100italic,300italic' rel='stylesheet' type='text/css'>
+{{ else }}
+    <link href='https://fonts.googleapis.com/css?family={{ unescaped .Settings.Font }}' rel='stylesheet' type='text/css'>
+{{ end }}
     <link rel="stylesheet" href="/ionicons/css/ionicons.css">
     <link rel="stylesheet" href="/cv-templates/default.css">
     <script src="//code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <style type="text/css">
+
+        .color { color: {{ .Settings.Color }}; }
+        a { color: {{ .Settings.Color }}; text-decoration: underline; }
+        .section-rule { border-bottom: 8px {{ .Settings.Color }} solid; }
+        * { font-family: '{{ unescaped .Settings.Font }}'; }
+        .address {  }
+
+    </style>
 </head>
 <body>
 
@@ -52,12 +65,12 @@
 {{ if eq $section.Type 1 }}
                 <div class="row">
                     <div class="col-sm-3 section-rule">&nbsp;</div>
-                    <div class="col-sm-9"><h4 class="red">{{ $section.Title }}</h4></div>
+                    <div class="col-sm-9"><h4 class="color">{{ $section.Title }}</h4></div>
                 </div>
 {{ else if eq $section.Type 2 }}
                 <div class="row">
                     <div class="col-sm-3">&nbsp;</div>
-                    <div class="col-sm-9"><h5 class="red">{{ $section.Subtitle }}</h5></div>
+                    <div class="col-sm-9"><h5 class="color">{{ $section.Subtitle }}</h5></div>
                 </div>
 {{ else if eq $section.Type 3 }}
                 <div class="row">

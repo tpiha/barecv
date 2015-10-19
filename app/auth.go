@@ -24,6 +24,9 @@ func CurrentUser(tokens oauth2.Tokens) *User {
 	if len(user.Name) == 0 && len(name) > 0 {
 		user.Name = name
 		db.Save(&user)
+
+		setting := &Setting{UserID: int(user.ID)}
+		db.Create(setting)
 	}
 
 	if user.DeletedAt != nil {

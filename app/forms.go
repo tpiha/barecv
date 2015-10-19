@@ -28,3 +28,9 @@ type UsernameForm struct {
 type TitleForm struct {
 	Title string `form:"title" binding:"required"`
 }
+
+// SettingsForm represents form for submitting section tite
+type SettingsForm struct {
+	Color string `form:"color" binding:"required"`
+	Font  string `form:"font" binding:"required"`
+}

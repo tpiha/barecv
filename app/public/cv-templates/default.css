@@ -1,16 +1,11 @@
-* { font-family: 'Roboto'; }
-.address {  }
 .contact p, .address p { text-align: right; margin-bottom: 0px; font-weight: 100; font-style: italic; min-width: 250px; }
 .contact { padding-right: 0px; }
-a { color: #E80000; text-decoration: underline; }
 .name { padding-left: 0px; }
 .name h3 { font-style: italic; margin-bottom: 0px; }
 .grey { color: #464646; }
 .light-grey { color: #9E9E9E; }
-.red { color: #E80000; }
 .name > h1 { margin-top: 0; }
 .name > h3 { margin-top: 0; }
-.section-rule { border-bottom: 8px #E80000 solid; }
 .period { text-align: right; }
 .header-icon { font-size: 1.2em; }
 .footer { margin-bottom: 50px; }

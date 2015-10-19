@@ -96,14 +96,21 @@ func (s *Section) GetRight() template.HTML {
 	return template.HTML(s.Right)
 }
 
+const (
+	PrivacyPublic   = 1
+	PrivacyPrivate  = 2
+	PrivacyPassword = 3
+	PrivacyHash     = 4
+)
+
 // Setting represents settings for the users
 type Setting struct {
 	gorm.Model
 	User                  User
 	UserID                int    `sql:"index"`
-	Color                 string `sql:"size:255"`
-	Font                  string `sql:"size:255"`
-	PrivacyLevel          int
+	Color                 string `sql:"size:255;default:'#E80000'"`
+	Font                  string `sql:"size:255;default:'Roboto'"`
+	PrivacyLevel          int    `sql:"default:1"`
 	Template              string `sql:"size:255"`
 	GoogleAnalytics       string `sql:"size:255"`
 	SearchIndexingEnabled bool   `sql:"is_default:true"`
