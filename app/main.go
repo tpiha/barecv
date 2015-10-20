@@ -62,6 +62,7 @@ func main() {
 	m.Get("/sections/:type/:section_id", oauth2.LoginRequired, SectionsUpdate)
 	m.Get("/account", oauth2.LoginRequired, Account)
 	m.Get("/account-delete", oauth2.LoginRequired, AccountDelete)
+	m.Get("/account-redirect", oauth2.LoginRequired, AccountRedirect)
 	m.Get("/generate-pdf", oauth2.LoginRequired, GeneratePDF)
 	m.Get("/settings", oauth2.LoginRequired, Settings)
 

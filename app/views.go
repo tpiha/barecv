@@ -224,6 +224,12 @@ func AccountDelete(r render.Render, tokens oauth2.Tokens, session sessions.Sessi
 	r.Redirect(config.AppUrl, 302)
 }
 
+// AccountRedirect redirects user to the account page with a flash message
+func AccountRedirect(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
+	session.AddFlash("First you must choose a BareCV username.", "error")
+	r.Redirect(config.AppUrl+"/account", 302)
+}
+
 // AccountSave renders user's account page
 func AccountSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, username UsernameForm, err binding.Errors) {
 	pd := NewPageData(tokens, session)

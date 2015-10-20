@@ -56,7 +56,11 @@
                                     <h3 class="box-title">Your CV</h3>
                                 </div>
                                 <div class="box-body">
+{{ if .User.Username }}
                                     <p><a class="btn btn-primary btn-block" href="javascript: void null;" onclick="window.open('http://{{ .User.Username }}{{ .Config.CVBase }}');">Open Your CV</a></p>
+{{ else }}
+                                    <p><a class="btn btn-primary btn-block" href="{{ .AppUrl }}/account-redirect">Open Your CV</a></p>
+{{ end }}
                                     <p class="last-item"><a class="btn btn-success btn-block" href="javascript: void null;" onclick="window.open('{{ .AppUrl }}/generate-pdf');">Generate PDF</a></p>
                                 </div>
                             </div><!-- /.box -->

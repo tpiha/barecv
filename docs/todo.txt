@@ -2,7 +2,6 @@ TODO
 
 v 1.0 beta
 
-- set username initially
 - add data to the PDF
 - settings - privacy level (public, private, hash, password)
 - add photo to CV
@@ -36,3 +35,4 @@ v 1.0 beta
 * settings - color, fonts
 * settings - google analytics
 * settings - disable search engine indexing
+* set username initially
