@@ -24,6 +24,11 @@
         a { color: {{ .Settings.Color }}; text-decoration: underline; }
         .section-rule { border-bottom: 8px {{ .Settings.Color }} solid; }
         * { font-family: '{{ unescaped .Settings.Font }}'; }
+        @media screen and (max-width: 768px) {
+            .section-rule { display: none; }
+            h4 { border-bottom: 3px solid {{ .Settings.Color }}; }
+            .period { text-align: left; font-weight: bold; font-style: italic; }
+        }
         .address {  }
 
     </style>

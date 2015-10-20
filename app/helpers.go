@@ -116,16 +116,14 @@ func GetChartData(user *User) []int {
 	return data
 }
 
-// type Fonts struct {
-// 	Fonts []Font
-// }
-
+// Font represents Google font which we are reading from fonts.json
 type Font struct {
 	CSSName    string `json:"css-name,omitempty"`
 	FontFamily string `json:"font-family,omitempty"`
 	FontName   string `json:"font-name,omitempty"`
 }
 
+// GetFonts returns Google fonts from fonts.json
 func GetFonts() []*Font {
 	content, err := ioutil.ReadFile(filepath.Join(HomeDir(), "fonts.json"))
 	if err != nil {
@@ -140,4 +138,21 @@ func GetFonts() []*Font {
 	}
 
 	return fonts
+}
+
+// CheckPrivacy checks privacy settings for the CV and current user and decides if user can see the CV
+func CheckPrivacy(cv *UserCV) bool {
+	var allowed bool
+
+	if cv.Settings.PrivacyLevel == PrivacyPublic {
+		allowed = true
+	} else if cv.Settings.PrivacyLevel == PrivacyPrivate {
+		allowed = false
+	} else if cv.Settings.PrivacyLevel == PrivacyPassword {
+
+	} else if cv.Settings.PrivacyLevel == PrivacyHash {
+
+	}
+
+	return allowed
 }

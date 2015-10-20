@@ -14,7 +14,7 @@ import (
 )
 
 // Home renders home page
-func Home(r render.Render, req *http.Request) {
+func Home(r render.Render, req *http.Request, tokens oauth2.Tokens, session sessions.Session) {
 	if "http://"+req.Host == config.AppUrl {
 		o := render.HTMLOptions{Layout: ""}
 		r.HTML(200, "home", nil, o)
@@ -37,12 +37,14 @@ func Show(r render.Render, req *http.Request) {
 	cv.Settings.UserID = int(cv.User.ID)
 	db.Where(cv.Settings).First(cv.Settings)
 
-	visit := &Visit{User: *cv.User}
-	db.Create(visit)
-
-	log.Printf("[Show] font: %s", cv.Settings.Font)
-
-	r.HTML(200, "cv-templates/default", cv, o)
+	if CheckPrivacy(cv) {
+		visit := &Visit{User: *cv.User}
+		db.Create(visit)
+		log.Printf("[Show] font: %s", cv.Settings.Font)
+		r.HTML(200, "cv-templates/default", cv, o)
+	} else {
+		r.Redirect(config.AppUrl, 302)
+	}
 }
 
 // Dashboard renders dashboard page
