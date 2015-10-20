@@ -294,6 +294,7 @@ func SettingsSave(r render.Render, tokens oauth2.Tokens, session sessions.Sessio
 	userSettings := pd.Settings
 	userSettings.Color = settings.Color
 	userSettings.Font = settings.Font
+	userSettings.GoogleAnalytics = settings.GoogleAnalytics
 	db.Save(userSettings)
 
 	session.AddFlash("You have successfully saved your settings.", "success")
