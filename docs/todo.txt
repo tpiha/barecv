@@ -4,12 +4,13 @@ v 1.0 beta
 
 - set username initially
 - add data to the PDF
-- settings - privacy level (public, private, hash, password), template, background for margins, google analytics, disable search engine indexing
+- settings - privacy level (public, private, hash, password), google analytics, disable search engine indexing
 - add photo to CV
 - upload files
 
 v 1.1 beta
 
+- settings - template
 - additional languages
 - embed CV in website
 
