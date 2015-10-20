@@ -6,6 +6,7 @@ import (
 	"fmt"
 	"io/ioutil"
 	"log"
+	"math/rand"
 	"os"
 	"os/exec"
 	"path/filepath"
@@ -140,19 +141,15 @@ func GetFonts() []*Font {
 	return fonts
 }
 
-// CheckPrivacy checks privacy settings for the CV and current user and decides if user can see the CV
-func CheckPrivacy(cv *UserCV) bool {
-	var allowed bool
+// letters is a variable filled with all letters and numbers in the English alphabet
+var letters = []rune("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789")
 
-	if cv.Settings.PrivacyLevel == PrivacyPublic {
-		allowed = true
-	} else if cv.Settings.PrivacyLevel == PrivacyPrivate {
-		allowed = false
-	} else if cv.Settings.PrivacyLevel == PrivacyPassword {
-
-	} else if cv.Settings.PrivacyLevel == PrivacyHash {
-
+// RandSeq generates a random sequence of letters and numbers with lenght of n characters
+func RandSeq(n int) string {
+	rand.Seed(time.Now().UTC().UnixNano())
+	b := make([]rune, n)
+	for i := range b {
+		b[i] = letters[rand.Intn(len(letters))]
 	}
-
-	return allowed
+	return string(b)
 }

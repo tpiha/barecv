@@ -9,7 +9,6 @@ import (
 // User represents user database model
 type User struct {
 	gorm.Model
-	Hash       string `sql:"size:255"`
 	Name       string `sql:"size:255"`
 	Profession string `sql:"size:255"`
 	Email      string `sql:"size:255"`
@@ -114,4 +113,5 @@ type Setting struct {
 	Template              string `sql:"size:255"`
 	GoogleAnalytics       string `sql:"size:255"`
 	SearchIndexingEnabled bool   `sql:"is_default:true"`
+	Hash                  string `sql:"size:255"`
 }

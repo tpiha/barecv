@@ -3,12 +3,12 @@ TODO
 v 1.0 beta
 
 - add data to the PDF
-- settings - privacy level (public, private, hash, password)
 - add photo to CV
 - upload files
 
 v 1.1 beta
 
+- settings - privacy with password
 - settings - template
 - additional languages
 - embed CV in website
@@ -36,3 +36,4 @@ v 1.0 beta
 * settings - google analytics
 * settings - disable search engine indexing
 * set username initially
+* settings - privacy level (public, private, hash, password)

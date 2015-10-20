@@ -14,22 +14,20 @@ import (
 )
 
 // Home renders home page
-func Home(r render.Render, req *http.Request, tokens oauth2.Tokens, session sessions.Session) {
+func Home(r render.Render, req *http.Request, tokens oauth2.Tokens, session sessions.Session, params martini.Params) {
 	if "http://"+req.Host == config.AppUrl {
 		o := render.HTMLOptions{Layout: ""}
 		r.HTML(200, "home", nil, o)
 	} else {
-		Show(r, req)
+		ShowPublic(r, req)
 	}
 }
 
 // Show renders user's CV
-func Show(r render.Render, req *http.Request) {
+func Show(r render.Render, req *http.Request, username string) {
 	o := render.HTMLOptions{Layout: ""}
 	cv := &UserCV{}
-	username := strings.Replace(req.Host, config.CVBase, "", -1)
-	log.Printf("[Show] URL: %s", req.Host)
-	log.Printf("[Show] username: %s", username)
+
 	cv.User = &User{}
 	cv.User.Username = username
 	db.Where(cv.User).First(cv.User)
@@ -37,11 +35,60 @@ func Show(r render.Render, req *http.Request) {
 	cv.Settings.UserID = int(cv.User.ID)
 	db.Where(cv.Settings).First(cv.Settings)
 
-	if CheckPrivacy(cv) {
-		visit := &Visit{User: *cv.User}
-		db.Create(visit)
-		log.Printf("[Show] font: %s", cv.Settings.Font)
-		r.HTML(200, "cv-templates/default", cv, o)
+	visit := &Visit{User: *cv.User}
+	db.Create(visit)
+	log.Printf("[Show] font: %s", cv.Settings.Font)
+	r.HTML(200, "cv-templates/default", cv, o)
+}
+
+// ShowPublic renders public user's CV
+func ShowPublic(r render.Render, req *http.Request) {
+	username := strings.Replace(req.Host, config.CVBase, "", -1)
+
+	user := &User{}
+	user.Username = username
+	db.Where(user).First(user)
+	settings := &Setting{}
+	settings.UserID = int(user.ID)
+	db.Where(settings).First(settings)
+
+	if settings.PrivacyLevel == PrivacyPublic {
+		Show(r, req, username)
+	} else {
+		r.Redirect(config.AppUrl, 302)
+	}
+}
+
+// ShowPrivate renders private user's CV
+func ShowPrivate(r render.Render, req *http.Request, tokens oauth2.Tokens, session sessions.Session, params martini.Params) {
+	pd := NewPageData(tokens, session)
+	username := params["username"]
+	if pd.User.Username == username {
+		Show(r, req, username)
+	} else {
+		session.AddFlash("This is not your CV.", "error")
+		r.Redirect(config.AppUrl+"/dashboard", 302)
+	}
+}
+
+// ShowPassword renders user's CV with password
+func ShowPassword() {
+
+}
+
+// ShowHash renders user's CV with hash
+func ShowHash(r render.Render, req *http.Request, tokens oauth2.Tokens, session sessions.Session, params martini.Params) {
+	username := strings.Replace(req.Host, config.CVBase, "", -1)
+
+	user := &User{}
+	user.Username = username
+	db.Where(user).First(user)
+	settings := &Setting{}
+	settings.UserID = int(user.ID)
+	db.Where(settings).First(settings)
+
+	if settings.Hash == params["hash"] {
+		Show(r, req, username)
 	} else {
 		r.Redirect(config.AppUrl, 302)
 	}
@@ -297,8 +344,6 @@ func Settings(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 func SettingsSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, settings SettingsForm, err binding.Errors, req *http.Request) {
 	pd := NewPageData(tokens, session)
 
-	// _ = "breakpoint"
-
 	log.Printf("[SettingsSave] settings: %s", settings)
 	log.Printf("[SettingsSave] settings.SearchIndexingEnabled: %s", settings.SearchIndexingEnabled)
 
@@ -308,6 +353,9 @@ func SettingsSave(r render.Render, tokens oauth2.Tokens, session sessions.Sessio
 	userSettings.GoogleAnalytics = settings.GoogleAnalytics
 	userSettings.SearchIndexingEnabled = settings.SearchIndexingEnabled == "on"
 	userSettings.PrivacyLevel = settings.PrivacyLevel
+	if userSettings.PrivacyLevel == PrivacyHash {
+		userSettings.Hash = RandSeq(32)
+	}
 	db.Save(userSettings)
 
 	session.AddFlash("You have successfully saved your settings.", "success")

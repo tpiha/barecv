@@ -55,6 +55,7 @@ func main() {
 	// GET methods
 	m.Get("/", Home)
 	m.Get("/dashboard", oauth2.LoginRequired, Dashboard)
+	m.Get("/cv/:username", oauth2.LoginRequired, ShowPrivate)
 	m.Get("/cv", binding.Form(ProfileForm{}), oauth2.LoginRequired, CV)
 	m.Get("/sections", oauth2.LoginRequired, Sections)
 	m.Get("/sections/new/:type", oauth2.LoginRequired, SectionsNew)
@@ -65,6 +66,7 @@ func main() {
 	m.Get("/account-redirect", oauth2.LoginRequired, AccountRedirect)
 	m.Get("/generate-pdf", oauth2.LoginRequired, GeneratePDF)
 	m.Get("/settings", oauth2.LoginRequired, Settings)
+	m.Get("/:hash", ShowHash)
 
 	// POST methods
 	m.Post("/cv-save", binding.Form(ProfileForm{}), oauth2.LoginRequired, Save)

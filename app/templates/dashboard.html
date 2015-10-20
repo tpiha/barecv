@@ -57,7 +57,15 @@
                                 </div>
                                 <div class="box-body">
 {{ if .User.Username }}
+{{ if eq .Settings.PrivacyLevel 1 }}
                                     <p><a class="btn btn-primary btn-block" href="javascript: void null;" onclick="window.open('http://{{ .User.Username }}{{ .Config.CVBase }}');">Open Your CV</a></p>
+{{ end }}
+{{ if eq .Settings.PrivacyLevel 2 }}
+                                    <p><a class="btn btn-primary btn-block" href="javascript: void null;" onclick="window.open('{{ .AppUrl }}/cv/{{ .User.Username }}');">Open Your CV</a></p>
+{{ end }}
+{{ if eq .Settings.PrivacyLevel 4 }}
+                                    <p><a class="btn btn-primary btn-block" href="javascript: void null;" onclick="window.open('http://{{ .User.Username }}{{ .Config.CVBase }}/{{ .Settings.Hash }}');">Open Your CV</a></p>
+{{ end }}
 {{ else }}
                                     <p><a class="btn btn-primary btn-block" href="{{ .AppUrl }}/account-redirect">Open Your CV</a></p>
 {{ end }}
