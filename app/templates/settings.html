@@ -67,6 +67,11 @@
                                             <input type="text" class="form-control" id="google_analytics" name="google_analytics" placeholder="Enter your Google Analytics tracking code (e.g. UA-6090001-16)" value="{{ .Settings.GoogleAnalytics }}">
                                             {{ range .Errors }}{{ range .FieldNames }}{{ if eq . "name" }}<p class="help-block text-red">This field is required.</p>{{ end }}{{ end }}{{ end }}
                                         </div>
+                                        <div class="checkbox">
+                                            <label>
+                                                <input type="checkbox" name="indexing_enabled" id="indexing_enabled"{{ if .Settings.SearchIndexingEnabled }} checked{{ end }}> Search engine indexing enabled
+                                            </label>
+                                        </div>
                                     </div><!-- /.box-body -->
                                     <div class="box-footer">
                                         <button type="submit" class="btn btn-primary pull-right">Save Settings</button>

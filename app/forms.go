@@ -31,7 +31,8 @@ type TitleForm struct {
 
 // SettingsForm represents form for submitting section tite
 type SettingsForm struct {
-	Color           string `form:"color" binding:"required"`
-	Font            string `form:"font" binding:"required"`
-	GoogleAnalytics string `form:"google_analytics"`
+	Color                 string `form:"color" binding:"required"`
+	Font                  string `form:"font" binding:"required"`
+	GoogleAnalytics       string `form:"google_analytics"`
+	SearchIndexingEnabled string `form:"indexing_enabled"`
 }

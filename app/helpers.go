@@ -54,7 +54,7 @@ func NewPageData(tokens oauth2.Tokens, session sessions.Session) *PageData {
 	pd.Settings = &Setting{}
 	db.Where(&Setting{UserID: int(pd.User.ID)}).First(pd.Settings)
 
-	log.Printf("[NewPageData] settings: %s", pd.Settings)
+	// log.Printf("[NewPageData] settings: %s", pd.Settings)
 
 	return pd
 }

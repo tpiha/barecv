@@ -23,6 +23,7 @@ _testmain.go
 *.test
 *.prof
 app/app
+app/app.debug
 docs/premium.txt
 app/public/pdf/*
 config.json

@@ -286,15 +286,19 @@ func Settings(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 }
 
 // SettingsSave saves user's settings
-func SettingsSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, settings SettingsForm, err binding.Errors) {
+func SettingsSave(r render.Render, tokens oauth2.Tokens, session sessions.Session, settings SettingsForm, err binding.Errors, req *http.Request) {
 	pd := NewPageData(tokens, session)
 
+	// _ = "breakpoint"
+
 	log.Printf("[SettingsSave] settings: %s", settings)
+	log.Printf("[SettingsSave] settings.SearchIndexingEnabled: %s", settings.SearchIndexingEnabled)
 
 	userSettings := pd.Settings
 	userSettings.Color = settings.Color
 	userSettings.Font = settings.Font
 	userSettings.GoogleAnalytics = settings.GoogleAnalytics
+	userSettings.SearchIndexingEnabled = settings.SearchIndexingEnabled == "on"
 	db.Save(userSettings)
 
 	session.AddFlash("You have successfully saved your settings.", "success")
