@@ -67,6 +67,29 @@
                                             <input type="text" class="form-control" id="google_analytics" name="google_analytics" placeholder="Enter your Google Analytics tracking code (e.g. UA-6090001-16)" value="{{ .Settings.GoogleAnalytics }}">
                                             {{ range .Errors }}{{ range .FieldNames }}{{ if eq . "name" }}<p class="help-block text-red">This field is required.</p>{{ end }}{{ end }}{{ end }}
                                         </div>
+                                        <div class="form-group">
+                                            <label for="google_analytics">Privacy Level</label>
+                                            <div class="radio" style="margin-top: 0px;">
+                                                <label>
+                                                    <input type="radio" name="privacy" id="privacy1" value="1"{{ if eq .Settings.PrivacyLevel 1 }} checked=""{{ end }}> Public
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="privacy" id="privacy2" value="2"{{ if eq .Settings.PrivacyLevel 2 }} checked=""{{ end }}> Private
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="privacy" id="privacy3" value="3"{{ if eq .Settings.PrivacyLevel 3 }} checked=""{{ end }}> Password
+                                                </label>
+                                            </div>
+                                            <div class="radio">
+                                                <label>
+                                                    <input type="radio" name="privacy" id="privacy3" value="4"{{ if eq .Settings.PrivacyLevel 4 }} checked=""{{ end }}> Hash
+                                                </label>
+                                            </div>
+                                        </div>
                                         <div class="checkbox">
                                             <label>
                                                 <input type="checkbox" name="indexing_enabled" id="indexing_enabled"{{ if .Settings.SearchIndexingEnabled }} checked{{ end }}> Search engine indexing enabled

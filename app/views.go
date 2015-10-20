@@ -305,6 +305,7 @@ func SettingsSave(r render.Render, tokens oauth2.Tokens, session sessions.Sessio
 	userSettings.Font = settings.Font
 	userSettings.GoogleAnalytics = settings.GoogleAnalytics
 	userSettings.SearchIndexingEnabled = settings.SearchIndexingEnabled == "on"
+	userSettings.PrivacyLevel = settings.PrivacyLevel
 	db.Save(userSettings)
 
 	session.AddFlash("You have successfully saved your settings.", "success")

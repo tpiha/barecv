@@ -35,4 +35,5 @@ type SettingsForm struct {
 	Font                  string `form:"font" binding:"required"`
 	GoogleAnalytics       string `form:"google_analytics"`
 	SearchIndexingEnabled string `form:"indexing_enabled"`
+	PrivacyLevel          int    `form:"privacy"`
 }
