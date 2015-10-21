@@ -3,6 +3,8 @@ package main
 import (
 	"log"
 	"net/http"
+	"os"
+	"path/filepath"
 	"strconv"
 	"strings"
 
@@ -270,6 +272,7 @@ func Account(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 func AccountDelete(r render.Render, tokens oauth2.Tokens, session sessions.Session) {
 	pd := NewPageData(tokens, session)
 	db.Delete(pd.User)
+	os.RemoveAll(filepath.Join(HomeDir(), "app/public/files/"+pd.User.Username))
 	r.Redirect(config.AppUrl, 302)
 }
 
