@@ -299,8 +299,21 @@ func AccountSave(r render.Render, tokens oauth2.Tokens, session sessions.Session
 
 	if err.Len() == 0 {
 		user := pd.User
-		user.Username = username.Username
-		db.Save(user)
+		if user.Username != username.Username {
+			path := filepath.Join(HomeDir(), "app/public/files/"+user.Username)
+			if len(user.Username) == 0 {
+				path = filepath.Join(HomeDir(), "app/public/files/"+username.Username)
+			}
+			if _, err := os.Stat(path); os.IsNotExist(err) || len(user.Username) == 0 {
+				os.Mkdir(path, 0755)
+			}
+			if _, err := os.Stat(path); err == nil {
+				newPath := filepath.Join(HomeDir(), "app/public/files/"+username.Username)
+				os.Rename(path, newPath)
+			}
+			user.Username = username.Username
+			db.Save(user)
+		}
 		session.AddFlash("You have successfully updated your BareCV username / domain.", "success")
 		r.Redirect(config.AppUrl+"/account", 302)
 	} else {

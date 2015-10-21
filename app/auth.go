@@ -1,9 +1,10 @@
 package main
 
 import (
-	"github.com/martini-contrib/oauth2"
 	"os"
 	"path/filepath"
+
+	"github.com/martini-contrib/oauth2"
 )
 
 // CurrentUser returns current signed in user object
@@ -25,13 +26,16 @@ func CurrentUser(tokens oauth2.Tokens) *User {
 
 		setting := &Setting{UserID: int(user.ID)}
 		db.Create(setting)
-
-		os.Mkdir(filepath.Join(HomeDir(), "app/public/files/"+user.Username), 0755)
 	}
 
 	if user.DeletedAt != nil {
 		user.DeletedAt = nil
 		db.Unscoped().Save(&user)
+
+		if len(user.Username) > 0 {
+			path := filepath.Join(HomeDir(), "app/public/files/"+user.Username)
+			os.Mkdir(path, 0755)
+		}
 	}
 
 	return &user

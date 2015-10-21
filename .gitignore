@@ -27,3 +27,5 @@ app/app.debug
 docs/premium.txt
 app/public/pdf/*
 config.json
+app/public/files/*
+app/public/photos/*
