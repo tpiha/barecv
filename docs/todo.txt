@@ -3,8 +3,9 @@ TODO
 v 1.0 beta
 
 - upload files
-- add data to the PDF
 - add photo to CV
+- add data to the PDF
+
 
 v 1.1 beta
 
